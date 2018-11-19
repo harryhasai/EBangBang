@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.app.Application;
 
 import com.blankj.utilcode.util.Utils;
+import com.tencent.mm.opensdk.openapi.IWXAPI;
+import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
 import java.util.Stack;
 
@@ -14,6 +16,7 @@ public class EBangBangApplication extends Application {
 
     private Stack<Activity> activityStack;
     private static EBangBangApplication appContext;
+    public IWXAPI mWXAPI;
 
     @Override
     public void onCreate() {
@@ -23,6 +26,19 @@ public class EBangBangApplication extends Application {
 
         //初始化AndroidUtils
         Utils.init(this);
+
+        //注册微信登录
+        registerToWX();
+    }
+
+    /**
+     * 注册微信登录
+     */
+    private void registerToWX() {
+        String WE_CHAT_APP_ID = "wx76be99258cfaf85a";
+        mWXAPI = WXAPIFactory.createWXAPI(this, WE_CHAT_APP_ID, false);
+        // 将该app注册到微信
+        mWXAPI.registerApp(WE_CHAT_APP_ID);
     }
 
     public static EBangBangApplication getAppContext() {

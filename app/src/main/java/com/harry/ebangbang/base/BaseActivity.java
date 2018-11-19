@@ -10,7 +10,10 @@ import com.harry.ebangbang.R;
 import com.harry.ebangbang.application.EBangBangApplication;
 import com.harry.ebangbang.base.presenter.BasePresenter;
 import com.harry.ebangbang.base.view.BaseActivityImpl;
+import com.harry.ebangbang.rx.DisposableManager;
 import com.jaeger.library.StatusBarUtil;
+
+import java.util.ArrayList;
 
 /**
  * Created by Harry on 2018/8/13.
@@ -50,6 +53,11 @@ public abstract class BaseActivity<P extends BasePresenter> extends BaseActivity
      */
     protected abstract void initView();
 
+    /**
+     * @return RxJava中的Disposable方法
+     */
+    protected abstract ArrayList<Object> cancelNetWork();
+
     private void initDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.LoadingDialog);
         dialog = builder.create();
@@ -78,6 +86,13 @@ public abstract class BaseActivity<P extends BasePresenter> extends BaseActivity
     protected void onDestroy() {
         super.onDestroy();
         application.finishActivity(this);   //清除栈中的Activity
+
+        ArrayList<Object> tags = cancelNetWork();
+        if (tags != null && tags.size() != 0) {
+            for (Object tag : tags) {
+                DisposableManager.get().cancel(tag);
+            }
+        }
     }
 
 }

@@ -12,6 +12,9 @@ import android.view.ViewGroup;
 import com.harry.ebangbang.R;
 import com.harry.ebangbang.base.presenter.BasePresenter;
 import com.harry.ebangbang.base.view.BaseFragmentImpl;
+import com.harry.ebangbang.rx.DisposableManager;
+
+import java.util.ArrayList;
 
 /**
  * Created by Harry on 2018/8/13.
@@ -53,6 +56,11 @@ public abstract class BaseFragment<P extends BasePresenter> extends BaseFragment
      */
     protected abstract void initView(View view);
 
+    /**
+     * @return RxJava中的Disposable方法
+     */
+    protected abstract ArrayList<Object> cancelNetWork();
+
     private void initDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(mActivity, R.style.LoadingDialog);
         dialog = builder.create();
@@ -74,6 +82,18 @@ public abstract class BaseFragment<P extends BasePresenter> extends BaseFragment
     public void dismissDialog() {
         if (dialog != null) {
             dialog.cancel();
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+        ArrayList<Object> tags = cancelNetWork();
+        if (tags != null && tags.size() != 0) {
+            for (Object tag : tags) {
+                DisposableManager.get().cancel(tag);
+            }
         }
     }
 }
