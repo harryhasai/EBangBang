@@ -12,4 +12,5 @@ public enum UserInfo {
     PHONE,
     TYPE,
     REMARK,
+    IS_LOGIN,
 }

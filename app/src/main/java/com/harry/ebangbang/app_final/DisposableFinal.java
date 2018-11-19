@@ -8,4 +8,7 @@ package com.harry.ebangbang.app_final;
 public enum DisposableFinal {
 
     LOGIN_ACTIVITY_LOGIN,
+    REGISTER_ACTIVITY_REGISTER,
+    REGISTER_ACTIVITY_GET_VERIFY_CODE,
+    REGISTER_ACTIVITY_CHECK_VERIFY_CODE,
 }

@@ -16,6 +16,7 @@ import com.harry.ebangbang.app_final.DisposableFinal;
 import com.harry.ebangbang.application.EBangBangApplication;
 import com.harry.ebangbang.base.BaseActivity;
 import com.harry.ebangbang.function.register.RegisterActivity;
+import com.harry.ebangbang.utils.NotificationUtil;
 import com.harry.ebangbang.utils.RxPermissionsUtils;
 import com.tencent.mm.opensdk.modelmsg.SendAuth;
 

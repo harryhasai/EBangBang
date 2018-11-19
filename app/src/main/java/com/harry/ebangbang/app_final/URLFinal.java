@@ -14,4 +14,16 @@ public class URLFinal {
      * 登录
      */
     public static final String LOGIN = "mobile/Login";
+    /**
+     * 验证验证码
+     */
+    public static final String CHECK_VERIFY_CODE = "mobile/SelectVerify";
+    /**
+     * 获取验证码
+     */
+    public static final String GET_VERIFY_CODE = "mobile/toregister";
+    /**
+     * 注册
+     */
+    public static final String REGISTER = "mobile/createUser";
 }

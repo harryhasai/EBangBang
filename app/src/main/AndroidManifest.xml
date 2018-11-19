@@ -44,15 +44,16 @@
             android:name="com.amap.api.v2.apikey"
             android:value="66b1ebbd50ad1978650ac1019ac42349" />
 
-        <activity android:name=".function.main.MainActivity" />
-        <activity android:name=".function.login.LoginActivity">
+        <activity android:name=".function.splash.SplashActivity"
+            android:theme="@style/AppTheme.NoActionBarWithBackGround">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <activity android:name=".function.main.MainActivity" />
+        <activity android:name=".function.login.LoginActivity" />
         <!--微信-->
         <activity
             android:name=".wxapi.WXEntryActivity"
