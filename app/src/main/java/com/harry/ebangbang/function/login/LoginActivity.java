@@ -15,6 +15,7 @@ import com.harry.ebangbang.R;
 import com.harry.ebangbang.app_final.DisposableFinal;
 import com.harry.ebangbang.application.EBangBangApplication;
 import com.harry.ebangbang.base.BaseActivity;
+import com.harry.ebangbang.function.forget_password.ForgetPasswordActivity;
 import com.harry.ebangbang.function.register.RegisterActivity;
 import com.harry.ebangbang.utils.NotificationUtil;
 import com.harry.ebangbang.utils.RxPermissionsUtils;
@@ -103,7 +104,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
                 startActivity(new Intent(this, RegisterActivity.class));
                 break;
             case R.id.tv_forget_password:   //忘记密码
-
+                startActivity(new Intent(this, ForgetPasswordActivity.class));
                 break;
             case R.id.iv_we_chat:   //微信登录
                 wxLogin();

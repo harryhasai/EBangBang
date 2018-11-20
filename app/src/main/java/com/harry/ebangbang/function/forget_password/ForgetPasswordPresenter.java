@@ -1,4 +1,4 @@
-package com.harry.ebangbang.function.register;
+package com.harry.ebangbang.function.forget_password;
 
 import com.blankj.utilcode.util.ToastUtils;
 import com.harry.ebangbang.app_final.DisposableFinal;
@@ -12,25 +12,25 @@ import io.reactivex.disposables.Disposable;
 /**
  * Created by Harry on 2018/11/19.
  */
-public class RegisterPresenter extends BasePresenter<RegisterActivity> {
+public class ForgetPasswordPresenter extends BasePresenter<ForgetPasswordActivity> {
 
-    private final RegisterModel model;
+    private final ForgetPasswordModel model;
 
-    public RegisterPresenter() {
-        model = new RegisterModel();
+    public ForgetPasswordPresenter() {
+        model = new ForgetPasswordModel();
     }
 
-    public void register(String phone, String password) {
-        model.register(phone, password, new Observer<CommonEntity>() {
+    public void forgetPassword(String phone, String password, String confirmPassword) {
+        model.forgetPassword(phone, password, confirmPassword, new Observer<CommonEntity>() {
             @Override
             public void onSubscribe(Disposable d) {
-                DisposableManager.get().add(DisposableFinal.REGISTER_ACTIVITY_REGISTER, d);
+                DisposableManager.get().add(DisposableFinal.FORGET_PASSWORD_ACTIVITY_FORGET_PASSWORD, d);
             }
 
             @Override
             public void onNext(CommonEntity commonEntity) {
                 if (commonEntity.code == 1) {
-                    ToastUtils.showShort("注册成功");
+                    ToastUtils.showShort("设置成功");
                     view.finish();
                 } else {
                     ToastUtils.showShort(commonEntity.msg);
@@ -53,7 +53,7 @@ public class RegisterPresenter extends BasePresenter<RegisterActivity> {
         model.getVerifyCode(phone, UUID, new Observer<CommonEntity>() {
             @Override
             public void onSubscribe(Disposable d) {
-                DisposableManager.get().add(DisposableFinal.REGISTER_ACTIVITY_GET_VERIFY_CODE, d);
+                DisposableManager.get().add(DisposableFinal.FORGET_PASSWORD_ACTIVITY_GET_VERIFY_CODE, d);
             }
 
             @Override
@@ -84,13 +84,13 @@ public class RegisterPresenter extends BasePresenter<RegisterActivity> {
         model.checkVerifyCode(phone, verifyCode, new Observer<CommonEntity>() {
             @Override
             public void onSubscribe(Disposable d) {
-                DisposableManager.get().add(DisposableFinal.REGISTER_ACTIVITY_CHECK_VERIFY_CODE, d);
+                DisposableManager.get().add(DisposableFinal.FORGET_PASSWORD_ACTIVITY_CHECK_VERIFY_CODE, d);
             }
 
             @Override
             public void onNext(CommonEntity commonEntity) {
                 if (commonEntity.code == 1) {
-                    register(phone, password);
+                    forgetPassword(phone, password, password);
                 } else {
                     ToastUtils.showShort(commonEntity.msg);
                 }

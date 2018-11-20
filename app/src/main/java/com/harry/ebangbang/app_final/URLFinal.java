@@ -22,8 +22,13 @@ public class URLFinal {
      * 获取验证码
      */
     public static final String GET_VERIFY_CODE = "mobile/toregister";
+    public static final String GET_VERIFY_CODE_FORGET_PASSWORD = "mobile/forgetAcquire";
     /**
      * 注册
      */
     public static final String REGISTER = "mobile/createUser";
+    /**
+     * 忘记密码接口
+     */
+    public static final String FORGET_PASSWORD = "mobile/forgetPassword";
 }
