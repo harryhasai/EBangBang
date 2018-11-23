@@ -31,4 +31,12 @@ public class URLFinal {
      * 忘记密码接口
      */
     public static final String FORGET_PASSWORD = "mobile/forgetPassword";
+    /**
+     * 查询所有推荐的商家
+     */
+    public static final String HOME_GET_LIST = "mobile/home/allrecommend";
+    /**
+     * 首页banner
+     */
+    public static final String HOME_BANNER = "mobile/home/banner";
 }

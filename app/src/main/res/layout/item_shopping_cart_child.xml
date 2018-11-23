@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    tools:ignore="HardcodedText">
+
+    <CheckBox
+        android:id="@+id/cb_child"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_gravity="center_vertical"
+        android:button="@drawable/selector_check_button"
+        android:checked="true" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:background="@drawable/layer_list_bottom_line"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp">
+
+        <ImageView
+            android:id="@+id/iv_food"
+            android:layout_width="79dp"
+            android:layout_height="79dp"
+            android:contentDescription="food"
+            android:src="@drawable/ic_food" />
+
+        <LinearLayout
+            android:id="@+id/ll_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/iv_food"
+            android:layout_marginStart="15dp"
+            android:layout_marginBottom="13dp"
+            android:layout_toEndOf="@id/iv_food"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_reduce"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:background="@drawable/shape_gray_oval1"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:text="－"
+                android:textColor="@color/black1"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:text="1"
+                android:textColor="@color/black1"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/tv_plus"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:background="@drawable/shape_gray_oval1"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:text="＋"
+                android:textColor="@color/black1"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_food_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/ll_count"
+            android:layout_marginStart="15dp"
+            android:layout_marginBottom="23dp"
+            android:layout_toEndOf="@id/iv_food"
+            android:text="可乐鸡翅"
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/tv_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/ll_count"
+            android:layout_alignParentEnd="true"
+            android:text="¥31.9"
+            android:textColor="@color/red"
+            android:textSize="15sp" />
+    </RelativeLayout>
+
+</LinearLayout>

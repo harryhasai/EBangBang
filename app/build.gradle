@@ -72,4 +72,6 @@ dependencies {
     implementation 'org.greenrobot:eventbus:3.1.1'
     //微信登录
     implementation 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
+    //轮播图
+    implementation 'com.youth.banner:banner:1.4.10'
 }

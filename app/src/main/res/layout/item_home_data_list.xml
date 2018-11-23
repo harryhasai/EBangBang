@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/layer_list_bottom_line"
+    android:orientation="vertical"
+    android:paddingStart="20dp"
+    android:paddingEnd="20dp"
+    android:paddingBottom="15dp"
+    tools:ignore="HardcodedText">
+
+    <TextView
+        android:id="@+id/tv_text"
+        android:visibility="gone"
+        android:layout_marginTop="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="热销推荐"
+        android:textColor="@color/black"
+        android:textSize="15sp" />
+
+    <ImageView
+        android:id="@+id/iv_food_img"
+        android:layout_width="88dp"
+        android:layout_height="88dp"
+        android:layout_below="@id/tv_text"
+        android:layout_marginTop="15dp"
+        android:contentDescription="food"
+        android:src="@drawable/ic_food" />
+
+    <TextView
+        android:id="@+id/tv_business"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/iv_food_img"
+        android:layout_marginStart="15sp"
+        android:layout_toEndOf="@id/iv_food_img"
+        android:text="农家川菜馆"
+        android:textColor="@color/black"
+        android:textSize="15sp" />
+
+    <!--<TextView-->
+        <!--android:id="@+id/tv_arrival_time"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@id/tv_business"-->
+        <!--android:layout_alignStart="@id/tv_business"-->
+        <!--android:layout_marginTop="8dp"-->
+        <!--android:text="30分钟送达"-->
+        <!--android:textColor="@color/black"-->
+        <!--android:textSize="12sp" />-->
+
+    <LinearLayout
+        android:id="@+id/ll_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_business"
+        android:layout_alignStart="@id/tv_business"
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_start_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="起送价 ¥ 20"
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:text="｜"
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/tv_freight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="配送费 ¥ 2.5"
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/tv_sales_volume"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:text="月售395"
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_event"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ll_container"
+        android:layout_alignStart="@id/tv_business"
+        android:layout_marginTop="12dp"
+        android:background="@color/red1"
+        android:paddingStart="3dp"
+        android:paddingEnd="3dp"
+        android:text="新用户立减12元,首次使用美团支付最高在减3元"
+        android:textColor="@color/white"
+        android:textSize="10sp" />
+
+</RelativeLayout>

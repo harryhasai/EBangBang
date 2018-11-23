@@ -13,4 +13,6 @@ public enum UserInfo {
     TYPE,
     REMARK,
     IS_LOGIN,
+    HEADER_URL,
+    HEADER_BASE,
 }

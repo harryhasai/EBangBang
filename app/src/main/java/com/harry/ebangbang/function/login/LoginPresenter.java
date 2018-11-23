@@ -70,5 +70,7 @@ public class LoginPresenter extends BasePresenter<LoginActivity> {
         SPUtils.putString(UserInfo.TYPE.name(), loginEntity.data.type);
         SPUtils.putString(UserInfo.TOKEN.name(), loginEntity.token);
         SPUtils.putString(UserInfo.REMARK.name(), loginEntity.data.remark);
+        SPUtils.putString(UserInfo.HEADER_BASE.name(), loginEntity.headPortraitLink);
+        SPUtils.putString(UserInfo.HEADER_URL.name(), loginEntity.data.headAddress);
     }
 }

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:rtv="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="5dp"
+    android:background="@color/white"
+    android:elevation="3dp"
+    android:orientation="vertical"
+    tools:ignore="HardcodedText">
+
+    <com.youth.banner.Banner
+        android:id="@+id/banner"
+        android:layout_width="match_parent"
+        android:layout_height="180dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp">
+
+        <com.ruffian.library.RTextView
+            android:id="@+id/tv_center_food"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawablePadding="5dp"
+            android:gravity="center_horizontal"
+            android:text="美食"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            rtv:icon_direction="top"
+            rtv:icon_height="32dp"
+            rtv:icon_src_normal="@drawable/ic_home_center1"
+            rtv:icon_width="35dp" />
+
+        <com.ruffian.library.RTextView
+            android:id="@+id/tv_center_order"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawablePadding="5dp"
+            android:gravity="center_horizontal"
+            android:text="一键下单"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            rtv:icon_direction="top"
+            rtv:icon_height="32dp"
+            rtv:icon_src_normal="@drawable/ic_home_center2"
+            rtv:icon_width="35dp" />
+
+        <com.ruffian.library.RTextView
+            android:id="@+id/tv_center_service"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawablePadding="5dp"
+            android:gravity="center_horizontal"
+            android:text="跑腿服务"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            rtv:icon_direction="top"
+            rtv:icon_height="32dp"
+            rtv:icon_src_normal="@drawable/ic_home_center3"
+            rtv:icon_width="35dp" />
+
+        <com.ruffian.library.RTextView
+            android:id="@+id/tv_center_share"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawablePadding="5dp"
+            android:gravity="center_horizontal"
+            android:text="分享有礼"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            rtv:icon_direction="top"
+            rtv:icon_height="32dp"
+            rtv:icon_src_normal="@drawable/ic_home_center4"
+            rtv:icon_width="35dp" />
+    </LinearLayout>
+</LinearLayout>
