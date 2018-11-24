@@ -34,6 +34,7 @@
             android:textSize="13sp" />
 
         <TextView
+            android:id="@+id/tv_distance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@id/tv_name"
@@ -43,49 +44,14 @@
             android:textColor="@color/black"
             android:textSize="12sp" />
 
-        <LinearLayout
-            android:id="@+id/ll_star"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tv_name"
-            android:layout_marginTop="12dp"
-            android:layout_toEndOf="@id/iv_food_img"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="11dp"
-                android:layout_height="11dp"
-                android:src="@drawable/ic_star" />
-
-            <ImageView
-                android:layout_width="11dp"
-                android:layout_height="11dp"
-                android:src="@drawable/ic_star" />
-
-            <ImageView
-                android:layout_width="11dp"
-                android:layout_height="11dp"
-                android:src="@drawable/ic_star" />
-
-            <ImageView
-                android:layout_width="11dp"
-                android:layout_height="11dp"
-                android:src="@drawable/ic_star" />
-
-            <ImageView
-                android:layout_width="11dp"
-                android:layout_height="11dp"
-                android:src="@drawable/ic_star" />
-        </LinearLayout>
-
         <TextView
+            android:id="@+id/tv_category"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_name"
-            android:layout_marginStart="7dp"
-            android:layout_marginTop="11dp"
-            android:layout_toEndOf="@id/ll_star"
-            android:text="¥ 10/人"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@id/iv_food_img"
+            android:text="分类"
             android:textColor="@color/black"
             android:textSize="10sp" />
 
@@ -93,9 +59,11 @@
             android:id="@+id/tv_address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/ll_star"
-            android:layout_marginTop="12dp"
+            android:layout_below="@id/tv_category"
+            android:layout_marginTop="10dp"
             android:layout_toEndOf="@id/iv_food_img"
+            android:ellipsize="end"
+            android:lines="1"
             android:text="西工区      热菜美食店"
             android:textColor="@color/black"
             android:textSize="10sp" />
@@ -105,9 +73,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_address"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
             android:layout_toEndOf="@id/iv_food_img"
             android:background="@color/red1"
+            android:ellipsize="end"
+            android:lines="1"
             android:paddingStart="4dp"
             android:paddingEnd="4dp"
             android:text="满20立减15"

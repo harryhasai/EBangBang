@@ -5,12 +5,15 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.amap.api.location.AMapLocation;
+import com.amap.api.location.AMapLocationListener;
 import com.blankj.utilcode.util.ToastUtils;
 import com.harry.ebangbang.R;
 import com.harry.ebangbang.app_final.DisposableFinal;
 import com.harry.ebangbang.base.BaseFragment;
 import com.harry.ebangbang.network.entity.HomeBannerEntity;
 import com.harry.ebangbang.network.entity.HomeEntity;
+import com.harry.ebangbang.utils.LocationUtil;
 import com.harry.ebangbang.utils.SwipeRefreshLayoutRefreshingUtil;
 
 import java.util.ArrayList;
@@ -47,6 +50,24 @@ public class HomeFragment extends BaseFragment<HomePresenter> {
 
         mPresenter.getBanner();
         mPresenter.getList();
+
+        uploadCurrentPosition();
+    }
+
+    /**
+     * 提交当前经纬度到服务器上
+     */
+    private void uploadCurrentPosition() {
+        LocationUtil.getInstance().initLocation(mActivity.getApplicationContext());
+        LocationUtil.getInstance().startLocation(new AMapLocationListener() {
+            @Override
+            public void onLocationChanged(AMapLocation aMapLocation) {
+                if (aMapLocation.getErrorCode() == 0) {
+                    //定位成功, 发送经纬度到服务器
+                    mPresenter.currentPosition(aMapLocation.getLongitude(), aMapLocation.getLatitude());
+                }
+            }
+        });
     }
 
     private void initRecyclerView() {
@@ -71,6 +92,7 @@ public class HomeFragment extends BaseFragment<HomePresenter> {
         ArrayList<Object> tags = new ArrayList<>();
         tags.add(DisposableFinal.HOME_FRAGMENT_GET_LIST);
         tags.add(DisposableFinal.HOME_FRAGMENT_GET_BANNER);
+        tags.add(DisposableFinal.HOME_FRAGMENT_CURRENT_POSITION);
         return tags;
     }
 

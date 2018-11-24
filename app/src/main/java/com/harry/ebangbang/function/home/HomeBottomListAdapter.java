@@ -9,7 +9,6 @@ import com.chad.library.adapter.base.BaseViewHolder;
 import com.harry.ebangbang.R;
 import com.harry.ebangbang.app_final.UserInfo;
 import com.harry.ebangbang.network.entity.HomeEntity;
-import com.harry.ebangbang.utils.PicassoCircleTransform;
 import com.harry.ebangbang.utils.SPUtils;
 import com.squareup.picasso.Picasso;
 
@@ -37,7 +36,7 @@ public class HomeBottomListAdapter extends BaseQuickAdapter<HomeEntity.DataBean,
         Picasso.with(mContext)
                 .load(SPUtils.getString(UserInfo.HEADER_BASE.name(), "") + item.logo)
                 .error(R.drawable.ic_error)
-                .transform(new PicassoCircleTransform())
+//                .transform(new PicassoCircleTransform())
                 .resize(ConvertUtils.dp2px(88), ConvertUtils.dp2px(88))
                 .centerCrop()
                 .into(ivFoodImg);

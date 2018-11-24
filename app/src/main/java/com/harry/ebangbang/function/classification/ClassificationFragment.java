@@ -8,8 +8,11 @@ import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.harry.ebangbang.R;
+import com.harry.ebangbang.app_final.DisposableFinal;
 import com.harry.ebangbang.base.BaseFragment;
 import com.harry.ebangbang.network.entity.CommonEntity;
+import com.harry.ebangbang.network.entity.SecondCategoryEntity;
+import com.harry.ebangbang.network.entity.TopCategoryEntity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +36,8 @@ public class ClassificationFragment extends BaseFragment<ClassificationPresenter
     Unbinder unbinder;
     private ClassificationChildCategoryAdapter childCategoryAdapter;
     private ClassificationCategoryAdapter categoryAdapter;
+    private List<TopCategoryEntity.DataBean> mTopCategoryList;
+    private List<SecondCategoryEntity.DataBean> mSecondCategoryList;
 
     @Override
     protected int setupView() {
@@ -43,26 +48,36 @@ public class ClassificationFragment extends BaseFragment<ClassificationPresenter
     protected void initView(View view) {
         unbinder = ButterKnife.bind(this, view);
 
+        mTopCategoryList = new ArrayList<>();
+        mSecondCategoryList = new ArrayList<>();
         initRecyclerView();
+
+        mPresenter.getFirstLevel();
     }
 
     private void initRecyclerView() {
         rvCategory.setLayoutManager(new LinearLayoutManager(mActivity));
         rvChildCategory.setLayoutManager(new LinearLayoutManager(mActivity));
 
-        List<CommonEntity> list = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            list.add(new CommonEntity());
-        }
-        categoryAdapter = new ClassificationCategoryAdapter(R.layout.item_classification_category, list, mActivity);
+        categoryAdapter = new ClassificationCategoryAdapter(R.layout.item_classification_category, mTopCategoryList, mActivity);
         rvCategory.setAdapter(categoryAdapter);
-        childCategoryAdapter = new ClassificationChildCategoryAdapter(R.layout.item_classification_child_category, list);
+        childCategoryAdapter = new ClassificationChildCategoryAdapter(R.layout.item_classification_child_category, mSecondCategoryList);
         rvChildCategory.setAdapter(childCategoryAdapter);
+
+        categoryAdapter.setOnTextViewClickListener(new ClassificationCategoryAdapter.OnTextViewClickListener() {
+            @Override
+            public void onClick(int id) {
+                mPresenter.getSecondLevel(String.valueOf(id));
+            }
+        });
     }
 
     @Override
     protected ArrayList<Object> cancelNetWork() {
-        return null;
+        ArrayList<Object> tags = new ArrayList<>();
+        tags.add(DisposableFinal.CLASSIFICATION_FRAGMENT_GET_FIRST_LEVEL);
+        tags.add(DisposableFinal.CLASSIFICATION_FRAGMENT_GET_SECOND_LEVEL);
+        return tags;
     }
 
     @Override
@@ -74,5 +89,18 @@ public class ClassificationFragment extends BaseFragment<ClassificationPresenter
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+    }
+
+    public void getFirstLevel(List<TopCategoryEntity.DataBean> data) {
+        mTopCategoryList.clear();
+        mTopCategoryList.addAll(data);
+        categoryAdapter.notifyDataSetChanged();
+        mPresenter.getSecondLevel(String.valueOf(data.get(0).id));
+    }
+
+    public void getSecondLevel(List<SecondCategoryEntity.DataBean> data) {
+        mSecondCategoryList.clear();
+        mSecondCategoryList.addAll(data);
+        childCategoryAdapter.notifyDataSetChanged();
     }
 }

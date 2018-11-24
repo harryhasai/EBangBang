@@ -3,9 +3,11 @@ package com.harry.ebangbang.function.home;
 import com.blankj.utilcode.util.ToastUtils;
 import com.harry.ebangbang.app_final.DisposableFinal;
 import com.harry.ebangbang.base.presenter.BasePresenter;
+import com.harry.ebangbang.network.entity.CommonEntity;
 import com.harry.ebangbang.network.entity.HomeBannerEntity;
 import com.harry.ebangbang.network.entity.HomeEntity;
 import com.harry.ebangbang.rx.DisposableManager;
+import com.harry.ebangbang.utils.LocationUtil;
 
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
@@ -63,6 +65,36 @@ public class HomePresenter extends BasePresenter<HomeFragment> {
                     view.getBanner(homeBannerEntity);
                 } else {
                     ToastUtils.showShort(homeBannerEntity.msg);
+                }
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                ToastUtils.showShort("网络连接错误");
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        });
+    }
+
+    public void currentPosition(double longitude, double latitude) {
+        model.currentPosition(longitude, latitude, new Observer<CommonEntity>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                DisposableManager.get().add(DisposableFinal.HOME_FRAGMENT_CURRENT_POSITION, d);
+            }
+
+            @Override
+            public void onNext(CommonEntity commonEntity) {
+                if (commonEntity.code == 1) {
+                    //发送位置成功后停止定位
+                    LocationUtil.getInstance().stopLocation();
+                    LocationUtil.getInstance().destroyLocation();
+                } else {
+                    ToastUtils.showShort(commonEntity.msg);
                 }
             }
 

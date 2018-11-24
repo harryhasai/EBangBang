@@ -1,6 +1,7 @@
 package com.harry.ebangbang.network.service;
 
 
+import com.harry.ebangbang.network.entity.CommonEntity;
 import com.harry.ebangbang.network.entity.HomeBannerEntity;
 import com.harry.ebangbang.network.entity.HomeEntity;
 
@@ -24,4 +25,9 @@ public interface HomeService {
     @FormUrlEncoded
     @POST
     Observable<HomeBannerEntity> getBanner(@Url String url, @FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
+    @POST
+    Observable<CommonEntity> currentPosition(@Url String url, @FieldMap Map<String, String> params);
+
 }

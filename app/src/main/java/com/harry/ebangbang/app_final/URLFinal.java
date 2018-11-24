@@ -39,4 +39,16 @@ public class URLFinal {
      * 首页banner
      */
     public static final String HOME_BANNER = "mobile/home/banner";
+    /**
+     * 进入首页获取当前位置
+     */
+    public static final String CURRENT_POSITION = "mobile/updataUserSite";
+    /**
+     * 获取一级分类
+     */
+    public static final String GET_FIRST_LEVEL = "mobile/home/firstOrder";
+    /**
+     * 获取一级分类下的二级分类
+     */
+    public static final String GET_SECOND_LEVEL = "mobile/home/classifyShop";
 }
