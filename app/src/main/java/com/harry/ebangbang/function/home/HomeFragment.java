@@ -53,8 +53,7 @@ public class HomeFragment extends BaseFragment<HomePresenter> {
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                ToastUtils.showShort("下拉刷新");
-                setRefreshing(false);
+                mPresenter.getList();
             }
         });
 

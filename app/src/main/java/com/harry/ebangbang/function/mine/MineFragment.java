@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * Created by Harry on 2018/11/6.
  * 我的
  */
-public class MineFragment extends BaseFragment {
+public class MineFragment extends BaseFragment<MinePresenter> {
 
     @Override
     protected int setupView() {
@@ -30,7 +30,7 @@ public class MineFragment extends BaseFragment {
     }
 
     @Override
-    protected BasePresenter bindPresenter() {
-        return null;
+    protected MinePresenter bindPresenter() {
+        return new MinePresenter();
     }
 }

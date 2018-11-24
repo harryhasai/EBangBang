@@ -58,6 +58,7 @@ public class HomeEntity {
         public int id;
         public int recommendGrade;
         public String longitude;
+        public int monthlySales;
         public List<MeetMinusBean> meetMinus;
 
         public static class MeetMinusBean {

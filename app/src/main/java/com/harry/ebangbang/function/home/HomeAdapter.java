@@ -52,9 +52,6 @@ public class HomeAdapter extends BaseMultiItemQuickAdapter<HomeMultiItem, BaseVi
                 setupBanner(helper);
                 break;
             case HomeMultiItem.BOTTOM://底部列表
-                mList.add(new HomeEntity.DataBean());
-                mList.add(new HomeEntity.DataBean());
-                mList.add(new HomeEntity.DataBean());
                 recyclerView = helper.getView(R.id.recycler_view);
                 recyclerView.setLayoutManager(new LinearLayoutManager(mActivity));
                 bottomListAdapter = new HomeBottomListAdapter(R.layout.item_home_data_list, mList);
@@ -64,9 +61,9 @@ public class HomeAdapter extends BaseMultiItemQuickAdapter<HomeMultiItem, BaseVi
     }
 
     public void setupRecyclerView(List<HomeEntity.DataBean> list) {
-//        mList.clear();
-//        mList.addAll(list);
-//        bottomListAdapter.notifyDataSetChanged();
+        mList.clear();
+        mList.addAll(list);
+        bottomListAdapter.notifyDataSetChanged();
     }
 
     public void setupBanner(HomeBannerEntity homeBannerEntity) {

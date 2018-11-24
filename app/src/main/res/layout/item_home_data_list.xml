@@ -12,13 +12,13 @@
 
     <TextView
         android:id="@+id/tv_text"
-        android:visibility="gone"
-        android:layout_marginTop="15dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
         android:text="热销推荐"
         android:textColor="@color/black"
-        android:textSize="15sp" />
+        android:textSize="15sp"
+        android:visibility="gone" />
 
     <ImageView
         android:id="@+id/iv_food_img"
@@ -41,15 +41,15 @@
         android:textSize="15sp" />
 
     <!--<TextView-->
-        <!--android:id="@+id/tv_arrival_time"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_below="@id/tv_business"-->
-        <!--android:layout_alignStart="@id/tv_business"-->
-        <!--android:layout_marginTop="8dp"-->
-        <!--android:text="30分钟送达"-->
-        <!--android:textColor="@color/black"-->
-        <!--android:textSize="12sp" />-->
+    <!--android:id="@+id/tv_arrival_time"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_below="@id/tv_business"-->
+    <!--android:layout_alignStart="@id/tv_business"-->
+    <!--android:layout_marginTop="8dp"-->
+    <!--android:text="30分钟送达"-->
+    <!--android:textColor="@color/black"-->
+    <!--android:textSize="12sp" />-->
 
     <LinearLayout
         android:id="@+id/ll_container"
@@ -68,21 +68,21 @@
             android:textColor="@color/black"
             android:textSize="12sp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="top"
-            android:text="｜"
-            android:textColor="@color/black"
-            android:textSize="12sp" />
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="top"-->
+            <!--android:text="｜"-->
+            <!--android:textColor="@color/black"-->
+            <!--android:textSize="12sp" />-->
 
-        <TextView
-            android:id="@+id/tv_freight"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="配送费 ¥ 2.5"
-            android:textColor="@color/black"
-            android:textSize="12sp" />
+        <!--<TextView-->
+            <!--android:id="@+id/tv_freight"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="配送费 ¥ 2.5"-->
+            <!--android:textColor="@color/black"-->
+            <!--android:textSize="12sp" />-->
 
         <TextView
             android:id="@+id/tv_sales_volume"
@@ -102,6 +102,8 @@
         android:layout_alignStart="@id/tv_business"
         android:layout_marginTop="12dp"
         android:background="@color/red1"
+        android:ellipsize="end"
+        android:lines="1"
         android:paddingStart="3dp"
         android:paddingEnd="3dp"
         android:text="新用户立减12元,首次使用美团支付最高在减3元"
