@@ -62,6 +62,7 @@
             android:screenOrientation="portrait" />
         <activity android:name=".function.register.RegisterActivity" />
         <activity android:name=".function.forget_password.ForgetPasswordActivity" />
+        <activity android:name=".function.submit_order.SubmitOrderActivity" />
 
     </application>
 

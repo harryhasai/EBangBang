@@ -103,4 +103,17 @@ public class ClassificationFragment extends BaseFragment<ClassificationPresenter
         mSecondCategoryList.addAll(data);
         childCategoryAdapter.notifyDataSetChanged();
     }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (!hidden) {
+            if (mTopCategoryList.size() == 0) {
+                mPresenter.getFirstLevel();
+            }
+            if (mTopCategoryList.size() != 0 && mSecondCategoryList.size() == 0) {
+                mPresenter.getSecondLevel(String.valueOf(mTopCategoryList.get(0).id));
+            }
+        }
+    }
 }

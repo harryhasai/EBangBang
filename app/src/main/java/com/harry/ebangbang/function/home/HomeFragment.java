@@ -36,6 +36,8 @@ public class HomeFragment extends BaseFragment<HomePresenter> {
     Unbinder unbinder;
 
     private HomeAdapter adapter;
+    private boolean isGetList;
+    private boolean isGetBanner;
 
     @Override
     protected int setupView() {
@@ -117,6 +119,11 @@ public class HomeFragment extends BaseFragment<HomePresenter> {
 
     public void getList(List<HomeEntity.DataBean> list) {
         adapter.setupRecyclerView(list);
+        if (list.size() == 0) {
+            isGetList = false;
+        } else {
+            isGetList = true;
+        }
     }
 
     /**
@@ -124,5 +131,23 @@ public class HomeFragment extends BaseFragment<HomePresenter> {
      */
     public void getBanner(HomeBannerEntity homeBannerEntity) {
         adapter.setupBanner(homeBannerEntity);
+        if (homeBannerEntity.data.size() == 0) {
+            isGetBanner = false;
+        } else {
+            isGetBanner = true;
+        }
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (!hidden) {
+            if (!isGetList) {
+                mPresenter.getList();
+            }
+            if (!isGetBanner) {
+                mPresenter.getBanner();
+            }
+        }
     }
 }

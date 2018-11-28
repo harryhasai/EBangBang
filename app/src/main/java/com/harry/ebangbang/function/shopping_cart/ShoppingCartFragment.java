@@ -1,18 +1,22 @@
 package com.harry.ebangbang.function.shopping_cart;
 
-import android.os.Bundle;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.blankj.utilcode.util.ToastUtils;
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.google.gson.Gson;
 import com.harry.ebangbang.R;
+import com.harry.ebangbang.app_final.DisposableFinal;
 import com.harry.ebangbang.base.BaseFragment;
-import com.harry.ebangbang.base.presenter.BasePresenter;
-import com.harry.ebangbang.network.entity.CommonEntity;
+import com.harry.ebangbang.function.submit_order.SubmitOrderActivity;
+import com.harry.ebangbang.network.entity.ShoppingCartEntity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +38,9 @@ public class ShoppingCartFragment extends BaseFragment<ShoppingCartPresenter> {
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
     Unbinder unbinder;
+    private List<ShoppingCartEntity.DataBean> mList;
+    private ShoppingCartAdapter adapter;
+    private int parentPosition;
 
     @Override
     protected int setupView() {
@@ -43,25 +50,108 @@ public class ShoppingCartFragment extends BaseFragment<ShoppingCartPresenter> {
     @Override
     protected void initView(View view) {
         unbinder = ButterKnife.bind(this, view);
+        mList = new ArrayList<>();
 
         llBack.setVisibility(View.GONE);
         tvTitle.setText("购物车");
 
         initRecyclerView();
+        mPresenter.getShoppingList();
     }
 
     private void initRecyclerView() {
         recyclerView.setLayoutManager(new LinearLayoutManager(mActivity));
-        List<CommonEntity> list = new ArrayList<>();
-        list.add(new CommonEntity());
-        list.add(new CommonEntity());
-        list.add(new CommonEntity());
-        recyclerView.setAdapter(new ShoppingCartAdapter(R.layout.item_shopping_cart, list));
+        adapter = new ShoppingCartAdapter(R.layout.item_shopping_cart, mList);
+        recyclerView.setAdapter(adapter);
+
+        adapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+            @Override
+            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+                switch (view.getId()) {
+                    case R.id.iv_cancel:
+                        showIsDelete(position);
+                        break;
+                    case R.id.btn_settle_accounts://去结算:
+                        ShoppingCartEntity.DataBean bean = mList.get(position);
+                        List<JsonFormatBean> jsonList = new ArrayList<>();
+                        for (int i = 0; i < bean.goods.size(); i++) {
+                            ShoppingCartEntity.DataBean.GoodsBean goodsBean = bean.goods.get(i);
+                            if (goodsBean.standby1 == 0) {//0 选中 1 不选中
+                                //[{"id":"1","num":"4"},{"id":"4","num":"1"}]
+                                jsonList.add(new JsonFormatBean(String.valueOf(goodsBean.goodsId), String.valueOf(goodsBean.amount)));
+                            }
+                        }
+                        Gson gson = new Gson();
+                        String s = gson.toJson(jsonList);
+                        String shopId = String.valueOf(bean.shopId);
+
+                        Intent intent = new Intent(mActivity, SubmitOrderActivity.class);
+                        intent.putExtra("shopId", shopId);
+                        intent.putExtra("ids", s);
+                        startActivity(intent);
+                        break;
+                }
+            }
+        });
+
+        adapter.setOnStateChangeListener(new ShoppingCartAdapter.OnStateChangeListener() {
+            @Override
+            public void add(int parentPosition, int childPosition) {
+                ShoppingCartFragment.this.parentPosition = parentPosition;
+                String shopId = String.valueOf(mList.get(parentPosition).shopId);
+                String goodsId = String.valueOf(mList.get(parentPosition).goods.get(childPosition).goodsId);
+                mPresenter.add(shopId, goodsId);
+            }
+
+            @Override
+            public void reduce(int parentPosition, int childPosition) {
+                ShoppingCartFragment.this.parentPosition = parentPosition;
+                String shopId = String.valueOf(mList.get(parentPosition).shopId);
+                String goodsId = String.valueOf(mList.get(parentPosition).goods.get(childPosition).goodsId);
+                mPresenter.reduce(shopId, goodsId);
+            }
+
+            @Override
+            public void check(int isChecked, int parentPosition, int childPosition) {
+                ShoppingCartFragment.this.parentPosition = parentPosition;
+                String shopId = String.valueOf(mList.get(parentPosition).shopId);
+                String goodsId = String.valueOf(mList.get(parentPosition).goods.get(childPosition).goodsId);
+                mPresenter.check(shopId, goodsId, isChecked);
+            }
+        });
+    }
+
+    /**
+     * 是否删除当前订单
+     *
+     * @param position 当前订单的位置
+     */
+    private void showIsDelete(final int position) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
+        builder.setMessage("是否删除当前订单?");
+        builder.setPositiveButton("是", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                mPresenter.delete(String.valueOf(mList.get(position).shopId));
+            }
+        }).setNegativeButton("否", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        }).show();
     }
 
     @Override
     protected ArrayList<Object> cancelNetWork() {
-        return null;
+        ArrayList<Object> tags = new ArrayList<>();
+        tags.add(DisposableFinal.SHOPPING_CART_FRAGMENT_GET_SHOPPING_LIST);
+        tags.add(DisposableFinal.SHOPPING_CART_FRAGMENT_DELETE);
+        tags.add(DisposableFinal.SHOPPING_CART_FRAGMENT_ADD);
+        tags.add(DisposableFinal.SHOPPING_CART_FRAGMENT_REDUCE);
+        tags.add(DisposableFinal.SHOPPING_CART_FRAGMENT_CHECK);
+        return tags;
     }
 
     @Override
@@ -73,5 +163,37 @@ public class ShoppingCartFragment extends BaseFragment<ShoppingCartPresenter> {
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+    }
+
+    public void getShoppingList(List<ShoppingCartEntity.DataBean> data) {
+        mList.clear();
+        mList.addAll(data);
+        adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (!hidden) {
+            if (mList.size() == 0) {
+                mPresenter.getShoppingList();
+            }
+        }
+    }
+
+    /**
+     * 删除成功后回调的方法
+     */
+    public void delete() {
+        mPresenter.getShoppingList();
+    }
+
+    /**
+     * @param data 更新局部列表
+     */
+    public void updateShoppingList(List<ShoppingCartEntity.DataBean> data) {
+        mList.clear();
+        mList.addAll(data);
+        adapter.notifyItemChanged(parentPosition);
     }
 }

@@ -85,7 +85,7 @@
             android:textSize="12sp" />
 
         <TextView
-            android:id="@+id/tv_price"
+            android:id="@+id/tv_food_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@id/ll_count"

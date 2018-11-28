@@ -67,14 +67,16 @@ public class HomeAdapter extends BaseMultiItemQuickAdapter<HomeMultiItem, BaseVi
     }
 
     public void setupBanner(HomeBannerEntity homeBannerEntity) {
-        List<String> images = new ArrayList<>();
-        for (int i = 0; i < homeBannerEntity.data.size(); i++) {
-            images.add(homeBannerEntity.attachmentPath + homeBannerEntity.data.get(i).bannerLink);
+        if (homeBannerEntity.data.size() != 0) {
+            List<String> images = new ArrayList<>();
+            for (int i = 0; i < homeBannerEntity.data.size(); i++) {
+                images.add(homeBannerEntity.attachmentPath + homeBannerEntity.data.get(i).bannerLink);
+            }
+            //设置图片集合
+            banner.setImages(images);
+            //banner设置方法全部调用完毕时最后调用
+            banner.start();
         }
-        //设置图片集合
-        banner.setImages(images);
-        //banner设置方法全部调用完毕时最后调用
-        banner.start();
     }
 
     private void setupBanner(BaseViewHolder helper) {

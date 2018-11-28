@@ -7,22 +7,13 @@
     android:elevation="3dp"
     tools:ignore="HardcodedText">
 
-    <CheckBox
-        android:id="@+id/cb_parent"
-        android:layout_width="15dp"
-        android:layout_height="15dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="15dp"
-        android:button="@drawable/selector_check_button"
-        android:checked="true" />
 
     <TextView
         android:id="@+id/tv_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="14dp"
-        android:layout_toEndOf="@id/cb_parent"
         android:includeFontPadding="false"
         android:text="西工区 (农家川菜馆)"
         android:textColor="@color/black"
@@ -38,24 +29,23 @@
         android:contentDescription="image"
         android:src="@drawable/ic_cancel" />
 
-    <LinearLayout
-        android:id="@+id/ll_container"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/cb_parent"
+        android:layout_below="@id/tv_name"
         android:layout_marginStart="20dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="20dp"
-        android:orientation="vertical" />
+        android:overScrollMode="never" />
 
     <TextView
         android:id="@+id/tv_lunch_box"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/ll_container"
-        android:layout_marginStart="10dp"
+        android:layout_below="@id/rv_container"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="15dp"
-        android:layout_toEndOf="@id/cb_parent"
         android:text="餐盒"
         android:textColor="@color/black"
         android:textSize="14sp" />
@@ -64,7 +54,7 @@
         android:id="@+id/tv_box_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/ll_container"
+        android:layout_below="@id/rv_container"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="20dp"
@@ -106,7 +96,7 @@
         android:layout_marginEnd="18dp"
         android:layout_toStartOf="@id/btn_settle_accounts"
         android:text="合计:¥43.9"
-        android:textColor="@color/black"
+        android:textColor="@color/red"
         android:textSize="15sp" />
 
 </RelativeLayout>

@@ -51,4 +51,28 @@ public class URLFinal {
      * 获取一级分类下的二级分类
      */
     public static final String GET_SECOND_LEVEL = "mobile/home/classifyShop";
+    /**
+     * 查询我的购物车
+     */
+    public static final String GET_SHOPPING_LIST = "mobile/shoppingTrolley/selectUserShopShoppingTrolley1";
+    /**
+     * 购物车 - 移除商家及商品
+     */
+    public static final String DELETE_SHOPPING_LIST_ITEM = "mobile/shoppingTrolley/deleteShopShoppingTrolley";
+    /**
+     * 购物车 - 增加商品数量
+     */
+    public static final String ADD_COUNT = "mobile/shoppingTrolley/addGoodsNumber";
+    /**
+     * 购物车 - 减去商品数量
+     */
+    public static final String REDUCE_COUNT = "mobile/shoppingTrolley/minusGoodsNumber";
+    /**
+     * 购物车 - 是否选中
+     */
+    public static final String CHECK_GOODS = "mobile/shoppingTrolley/isPitchOn";
+    /**
+     * 跳转预支付订单
+     */
+    public static final String GET_ORDER_DETAIL = "mobile/shoppingTrolley/produceOrderForm";
 }
