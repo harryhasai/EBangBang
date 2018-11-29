@@ -8,8 +8,8 @@
 
     <ImageView
         android:id="@+id/iv_food_img"
-        android:layout_width="33dp"
-        android:layout_height="33dp"
+        android:layout_width="34dp"
+        android:layout_height="34dp"
         android:contentDescription="food"
         android:src="@drawable/ic_food" />
 
@@ -22,7 +22,7 @@
         android:includeFontPadding="false"
         android:text="可乐鸡翅"
         android:textColor="@color/black1"
-        android:textSize="12sp" />
+        android:textSize="13sp" />
 
     <TextView
         android:id="@+id/tv_food_price"
@@ -35,7 +35,7 @@
         android:includeFontPadding="false"
         android:text="¥31.9"
         android:textColor="@color/red"
-        android:textSize="12sp" />
+        android:textSize="13sp" />
 
     <TextView
         android:id="@+id/tv_food_count"
@@ -46,5 +46,5 @@
         android:includeFontPadding="false"
         android:text="x 2"
         android:textColor="@color/black1"
-        android:textSize="12sp" />
+        android:textSize="13sp" />
 </RelativeLayout>

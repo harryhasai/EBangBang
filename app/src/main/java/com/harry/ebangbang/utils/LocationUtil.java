@@ -78,6 +78,17 @@ public class LocationUtil {
     }
 
     /**
+     * 开始定位
+     */
+    public void startLocation() {
+        if (locationClient == null) {
+            ToastUtils.showShort("还未初始化, 请先初始化");
+            return;
+        }
+        locationClient.startLocation();
+    }
+
+    /**
      * 停止定位
      */
     public void stopLocation() {

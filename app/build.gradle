@@ -42,6 +42,8 @@ dependencies {
     implementation 'com.amap.api:3dmap:6.4.1'
     //定位功能
     implementation 'com.amap.api:location:3.3.0'
+    //搜索功能
+    implementation 'com.amap.api:search:latest.integration'
 
     //RecyclerViewAdapter
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'

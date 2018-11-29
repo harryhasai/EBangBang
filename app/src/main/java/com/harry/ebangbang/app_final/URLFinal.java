@@ -75,4 +75,8 @@ public class URLFinal {
      * 跳转预支付订单
      */
     public static final String GET_ORDER_DETAIL = "mobile/shoppingTrolley/produceOrderForm";
+    /**
+     * 新增收货地址
+     */
+    public static final String ADD_ADDRESS = "mobile/PersonalCenter/addReceiverAddress";
 }

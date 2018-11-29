@@ -39,7 +39,7 @@
                     android:layout_height="wrap_content"
                     android:text="订餐人："
                     android:textColor="@color/black"
-                    android:textSize="12sp" />
+                    android:textSize="13sp" />
 
                 <TextView
                     android:id="@+id/tv_person_name"
@@ -48,7 +48,7 @@
                     android:layout_toEndOf="@id/text1"
                     android:text="张先生"
                     android:textColor="@color/black"
-                    android:textSize="12sp" />
+                    android:textSize="13sp" />
 
                 <com.ruffian.library.RTextView
                     android:id="@+id/tv_new_address"
@@ -58,7 +58,7 @@
                     android:drawablePadding="8dp"
                     android:text="新增地址"
                     android:textColor="@color/black"
-                    android:textSize="12sp"
+                    android:textSize="13sp"
                     rtv:icon_direction="right"
                     rtv:icon_height="12dp"
                     rtv:icon_src_normal="@drawable/ic_arrow_right"
@@ -72,7 +72,7 @@
                     android:layout_marginTop="15dp"
                     android:text="电&#12288;话："
                     android:textColor="@color/black"
-                    android:textSize="12sp" />
+                    android:textSize="13sp" />
 
                 <TextView
                     android:id="@+id/tv_person_phone"
@@ -82,7 +82,7 @@
                     android:layout_toEndOf="@id/text2"
                     android:text="13003790123"
                     android:textColor="@color/black"
-                    android:textSize="12sp" />
+                    android:textSize="13sp" />
 
                 <TextView
                     android:id="@+id/text3"
@@ -92,7 +92,7 @@
                     android:layout_marginTop="15dp"
                     android:text="地&#12288;址："
                     android:textColor="@color/black"
-                    android:textSize="12sp" />
+                    android:textSize="13sp" />
 
                 <TextView
                     android:id="@+id/tv_person_address"
@@ -102,7 +102,7 @@
                     android:layout_toEndOf="@id/text3"
                     android:text="紫金城A栋1101"
                     android:textColor="@color/black"
-                    android:textSize="12sp" />
+                    android:textSize="13sp" />
 
                 <View
                     android:layout_width="match_parent"
@@ -124,7 +124,7 @@
                         android:layout_height="wrap_content"
                         android:text="立即送出"
                         android:textColor="@color/black"
-                        android:textSize="12sp" />
+                        android:textSize="13sp" />
 
                     <com.ruffian.library.RTextView
                         android:id="@+id/tv_send_out_time"
@@ -134,7 +134,7 @@
                         android:drawablePadding="8dp"
                         android:text="大约30分钟送达"
                         android:textColor="@color/red1"
-                        android:textSize="12sp"
+                        android:textSize="13sp"
                         rtv:icon_direction="right"
                         rtv:icon_height="12dp"
                         rtv:icon_src_normal="@drawable/ic_arrow_right"
@@ -184,7 +184,7 @@
                         android:layout_height="wrap_content"
                         android:text="餐盒费"
                         android:textColor="@color/black"
-                        android:textSize="12sp" />
+                        android:textSize="13sp" />
 
                     <TextView
                         android:id="@+id/tv_box_price"
@@ -193,7 +193,7 @@
                         android:layout_gravity="end"
                         android:text="¥ 2"
                         android:textColor="@color/red"
-                        android:textSize="12sp" />
+                        android:textSize="13sp" />
                 </FrameLayout>
 
                 <FrameLayout
@@ -208,7 +208,7 @@
                         android:layout_height="wrap_content"
                         android:text="配送费"
                         android:textColor="@color/black"
-                        android:textSize="12sp" />
+                        android:textSize="13sp" />
 
                     <TextView
                         android:id="@+id/tv_transport_price"
@@ -217,7 +217,7 @@
                         android:layout_gravity="end"
                         android:text="¥ 3"
                         android:textColor="@color/red"
-                        android:textSize="12sp" />
+                        android:textSize="13sp" />
                 </FrameLayout>
 
                 <FrameLayout
@@ -234,7 +234,7 @@
                         android:layout_height="wrap_content"
                         android:text="满20减15"
                         android:textColor="@color/black"
-                        android:textSize="12sp" />
+                        android:textSize="13sp" />
 
                     <TextView
                         android:id="@+id/tv_discount_price"
@@ -243,7 +243,7 @@
                         android:layout_gravity="end"
                         android:text="- ¥ 15"
                         android:textColor="@color/red"
-                        android:textSize="12sp" />
+                        android:textSize="13sp" />
                 </FrameLayout>
 
                 <FrameLayout
@@ -259,7 +259,7 @@
                         android:layout_height="wrap_content"
                         android:text="商家代金券"
                         android:textColor="@color/black"
-                        android:textSize="12sp" />
+                        android:textSize="13sp" />
 
                     <com.ruffian.library.RTextView
                         android:id="@+id/tv_cash_coupon"
@@ -269,7 +269,7 @@
                         android:drawablePadding="8dp"
                         android:text="暂无可用"
                         android:textColor="@color/black"
-                        android:textSize="12sp"
+                        android:textSize="13sp"
                         rtv:icon_direction="right"
                         rtv:icon_height="12dp"
                         rtv:icon_src_normal="@drawable/ic_arrow_right"
@@ -282,7 +282,7 @@
                     android:layout_marginTop="15dp"
                     android:text="订单备注"
                     android:textColor="@color/black"
-                    android:textSize="12sp" />
+                    android:textSize="13sp" />
 
                 <EditText
                     android:id="@+id/et_remark"
@@ -294,7 +294,7 @@
                     android:inputType="text"
                     android:minLines="3"
                     android:textColor="@color/black"
-                    android:textSize="12sp" />
+                    android:textSize="13sp" />
 
             </LinearLayout>
 
@@ -302,6 +302,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:background="@color/white"
+                android:elevation="3dp"
                 android:orientation="horizontal"
                 android:paddingStart="8dp"
                 android:paddingTop="5dp"

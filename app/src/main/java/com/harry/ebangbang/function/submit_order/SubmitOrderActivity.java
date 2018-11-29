@@ -1,5 +1,6 @@
 package com.harry.ebangbang.function.submit_order;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,6 +14,7 @@ import com.harry.ebangbang.R;
 import com.harry.ebangbang.app_final.DisposableFinal;
 import com.harry.ebangbang.app_final.UserInfo;
 import com.harry.ebangbang.base.BaseActivity;
+import com.harry.ebangbang.function.add_address.AddAddressActivity;
 import com.harry.ebangbang.network.entity.SubmitOrderEntity;
 import com.harry.ebangbang.utils.SPUtils;
 import com.ruffian.library.RTextView;
@@ -106,6 +108,7 @@ public class SubmitOrderActivity extends BaseActivity<SubmitOrderPresenter> {
                 finish();
                 break;
             case R.id.tv_new_address://新增地址
+                startActivity(new Intent(this, AddAddressActivity.class));
                 break;
             case R.id.fl_send_out://立即送出
                 break;
@@ -141,7 +144,7 @@ public class SubmitOrderActivity extends BaseActivity<SubmitOrderPresenter> {
                     .load(SPUtils.getString(UserInfo.HEADER_BASE.name(), "") + goodsBean.goodsimg)
                     .error(R.drawable.ic_error)
 //                .transform(new PicassoCircleTransform())
-                    .resize(ConvertUtils.dp2px(33), ConvertUtils.dp2px(33))
+                    .resize(ConvertUtils.dp2px(34), ConvertUtils.dp2px(34))
                     .centerCrop()
                     .into(ivFoodImg);
 
