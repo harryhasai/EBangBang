@@ -2,6 +2,7 @@ package com.harry.ebangbang.function.add_address;
 
 import android.content.Intent;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -9,6 +10,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.blankj.utilcode.util.ToastUtils;
 import com.harry.ebangbang.R;
 import com.harry.ebangbang.app_final.ConstantFinal;
 import com.harry.ebangbang.app_final.DisposableFinal;
@@ -31,12 +33,6 @@ public class AddAddressActivity extends BaseActivity<AddAddressPresenter> {
     TextView tvTitle;
     @BindView(R.id.et_name)
     EditText etName;
-    @BindView(R.id.rb_man)
-    RadioButton rbMan;
-    @BindView(R.id.rb_women)
-    RadioButton rbWomen;
-    @BindView(R.id.radio_group1)
-    RadioGroup radioGroup1;
     @BindView(R.id.et_phone)
     EditText etPhone;
     @BindView(R.id.tv_location)
@@ -51,6 +47,8 @@ public class AddAddressActivity extends BaseActivity<AddAddressPresenter> {
     RadioGroup radioGroup2;
     @BindView(R.id.btn_save)
     Button btnSave;
+    private String latitude;
+    private String longitude;
 
     @Override
     protected int setupView() {
@@ -61,7 +59,7 @@ public class AddAddressActivity extends BaseActivity<AddAddressPresenter> {
     protected void initView() {
         ButterKnife.bind(this);
 
-
+        tvTitle.setText("新增地址");
     }
 
     @Override
@@ -86,16 +84,46 @@ public class AddAddressActivity extends BaseActivity<AddAddressPresenter> {
                 startActivityForResult(new Intent(this, ReceivingAddressActivity.class), ConstantFinal.COMMON_REQUEST_CODE);
                 break;
             case R.id.btn_save:
-
+                saveAddress();
                 break;
         }
+    }
+
+    private void saveAddress() {
+        String name = etName.getText().toString().trim();
+        String phone = etPhone.getText().toString().trim();
+        String location = tvLocation.getText().toString().trim();
+        String detailAddress = etAddress.getText().toString().trim();
+        String isDefault;
+        if (rbYes.isChecked()) {
+            isDefault = "1";
+        } else {
+            isDefault = "0";
+        }
+        if (TextUtils.isEmpty(name)) {
+            ToastUtils.showShort("请填写联系人");
+            return;
+        } else if (TextUtils.isEmpty(phone)) {
+            ToastUtils.showShort("请填写手机号");
+            return;
+        } else if (TextUtils.isEmpty(location)) {
+            ToastUtils.showShort("请选择收货地址");
+            return;
+        } else if (TextUtils.isEmpty(detailAddress)) {
+            ToastUtils.showShort("请填写详细地址");
+            return;
+        }
+        mPresenter.putAddress(name, detailAddress, longitude, latitude, isDefault, phone);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == ConstantFinal.COMMON_REQUEST_CODE && resultCode == ConstantFinal.COMMON_RESULT_CODE) {
-
+            String title = data.getStringExtra("title");
+            latitude = data.getStringExtra("latitude");
+            longitude = data.getStringExtra("longitude");
+            tvLocation.setText(title);
         }
     }
 }

@@ -31,7 +31,7 @@ public class ShoppingCartEntity {
 
         public int totalBox;
         public int minus;
-        public int total;
+        public double total;
         public int meet;
         public String shopName;
         public int shopId;
@@ -51,7 +51,7 @@ public class ShoppingCartEntity {
             public int amount;
             public String goodsImgLink;
             public int goodsId;
-            public int goodsPrice;
+            public double goodsPrice;
             public int standby1;
             public int boxMoney;
             public String goodsName;

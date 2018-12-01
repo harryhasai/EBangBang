@@ -18,6 +18,7 @@ public class DateFormatUtils {
     public static String PATTERN_4 = "MM.dd";
     public static String PATTERN_5 = "MM-dd HH:mm";
     public static String PATTERN_6 = "MM月dd日HH:mm";
+    public static String PATTERN_7 = "HH:mm";
 
     public static String getFormatedDateTime(String pattern, long dateTime) {
 

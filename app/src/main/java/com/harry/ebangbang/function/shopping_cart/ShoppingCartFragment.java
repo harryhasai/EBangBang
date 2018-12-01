@@ -13,6 +13,7 @@ import com.blankj.utilcode.util.ToastUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.google.gson.Gson;
 import com.harry.ebangbang.R;
+import com.harry.ebangbang.app_final.ConstantFinal;
 import com.harry.ebangbang.app_final.DisposableFinal;
 import com.harry.ebangbang.base.BaseFragment;
 import com.harry.ebangbang.function.submit_order.SubmitOrderActivity;
@@ -88,7 +89,7 @@ public class ShoppingCartFragment extends BaseFragment<ShoppingCartPresenter> {
                         Intent intent = new Intent(mActivity, SubmitOrderActivity.class);
                         intent.putExtra("shopId", shopId);
                         intent.putExtra("ids", s);
-                        startActivity(intent);
+                        startActivityForResult(intent, ConstantFinal.COMMON_REQUEST_CODE);
                         break;
                 }
             }
@@ -195,5 +196,13 @@ public class ShoppingCartFragment extends BaseFragment<ShoppingCartPresenter> {
         mList.clear();
         mList.addAll(data);
         adapter.notifyItemChanged(parentPosition);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == ConstantFinal.COMMON_REQUEST_CODE && resultCode == ConstantFinal.COMMON_RESULT_CODE) {
+            mPresenter.getShoppingList();
+        }
     }
 }

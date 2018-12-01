@@ -8,7 +8,8 @@ public class URLFinal {
     /**
      * BaseUrl
      */
-    public static final String BASE_URL = "http://116.62.218.136:9055/guozongApp/";
+//    public static final String BASE_URL = "http://116.62.218.136:9055/guozongApp/";
+    public static final String BASE_URL = "http://15386nv005.iok.la/guozongApp/";
 
     /**
      * 登录
@@ -76,7 +77,23 @@ public class URLFinal {
      */
     public static final String GET_ORDER_DETAIL = "mobile/shoppingTrolley/produceOrderForm";
     /**
+     * 进入预支付状态 生成订单
+     */
+    public static final String SUBMIT_ORDER = "mobile/shoppingTrolley/WaitingForThePayment";
+    /**
      * 新增收货地址
      */
     public static final String ADD_ADDRESS = "mobile/PersonalCenter/addReceiverAddress";
+    /**
+     * 查询条件满足的优惠卷
+     */
+    public static final String GET_COUPON = "mobile/shoppingTrolley/lookCoupon";
+    /**
+     * 微信统一下单接口
+     */
+    public static final String WX_PAY = "model/wxPay/api/wx/createOrder";
+    /**
+     * 支付宝下单
+     */
+    public static final String ALI_PAY = "alipay/api/alipay/createOrder";
 }

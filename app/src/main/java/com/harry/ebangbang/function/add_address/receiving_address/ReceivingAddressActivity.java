@@ -91,7 +91,7 @@ public class ReceivingAddressActivity extends BaseActivity {
                 Intent intent = new Intent();
                 intent.putExtra("title", mList.get(position).getTitle());
                 intent.putExtra("latitude", String.valueOf(latitude));
-                intent.putExtra("longitude", String.valueOf(latitude));
+                intent.putExtra("longitude", String.valueOf(longitude));
                 setResult(ConstantFinal.COMMON_RESULT_CODE, intent);
                 finish();
             }

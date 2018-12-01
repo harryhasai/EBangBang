@@ -1,5 +1,6 @@
 package com.harry.ebangbang.network.service;
 
+import com.harry.ebangbang.network.entity.GeneratePrepaidOrdersEntity;
 import com.harry.ebangbang.network.entity.SubmitOrderEntity;
 
 import java.util.Map;
@@ -18,4 +19,8 @@ public interface SubmitOrderService {
     @FormUrlEncoded
     @POST
     Observable<SubmitOrderEntity> getPageDetail(@Url String url, @FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
+    @POST
+    Observable<GeneratePrepaidOrdersEntity> submitOrder(@Url String url, @FieldMap Map<String, String> params);
 }

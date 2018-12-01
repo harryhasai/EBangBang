@@ -44,7 +44,8 @@
             android:name="com.amap.api.v2.apikey"
             android:value="66b1ebbd50ad1978650ac1019ac42349" />
 
-        <activity android:name=".function.splash.SplashActivity"
+        <activity
+            android:name=".function.splash.SplashActivity"
             android:theme="@style/AppTheme.NoActionBarWithBackGround">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -60,11 +61,17 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".wxapi.WXPayEntryActivity"
+            android:exported="true" />
+
         <activity android:name=".function.register.RegisterActivity" />
         <activity android:name=".function.forget_password.ForgetPasswordActivity" />
         <activity android:name=".function.submit_order.SubmitOrderActivity" />
         <activity android:name=".function.add_address.AddAddressActivity" />
         <activity android:name=".function.add_address.receiving_address.ReceivingAddressActivity" />
+        <activity android:name=".function.choose_coupon.ChooseCouponActivity" />
+        <activity android:name=".function.payment_method.PaymentMethodActivity" />
 
     </application>
 

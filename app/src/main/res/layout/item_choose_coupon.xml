@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="10dp"
+    android:layout_marginEnd="10dp"
+    android:layout_marginBottom="10dp"
+    android:background="@color/white"
+    android:elevation="3dp"
+    tools:ignore="HardcodedText">
+
+    <ImageView
+        android:id="@+id/iv_header"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="12dp"
+        android:contentDescription="image"
+        android:src="@drawable/ic_coupon_bg" />
+
+    <TextView
+        android:id="@+id/text1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/iv_header"
+        android:layout_marginStart="15dp"
+        android:layout_toEndOf="@id/iv_header"
+        android:includeFontPadding="false"
+        android:text="E棒棒红包"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/text2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text1"
+        android:layout_alignStart="@id/text1"
+        android:layout_marginTop="5dp"
+        android:text="在E棒棒平台下使用, 可抵扣相应金额."
+        android:textColor="@color/black1"
+        android:textSize="11sp" />
+
+    <TextView
+        android:id="@+id/tv_over_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text2"
+        android:layout_alignStart="@id/text1"
+        android:layout_marginTop="4dp"
+        android:text="有效期至2018-09-30"
+        android:textColor="@color/black1"
+        android:textSize="11sp" />
+
+    <LinearLayout
+        android:id="@+id/ll_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="12dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_reduce_money"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:includeFontPadding="false"
+            android:text="¥5"
+            android:textColor="@color/red1"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/tv_full_money"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="满25元可用"
+            android:textColor="@color/red1"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/iv_header"
+        android:layout_alignBottom="@id/iv_header"
+        android:layout_marginEnd="15dp"
+        android:layout_toStartOf="@id/ll_container"
+        android:src="@drawable/ic_dot_line" />
+
+</RelativeLayout>

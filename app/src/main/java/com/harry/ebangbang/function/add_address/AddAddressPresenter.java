@@ -1,6 +1,7 @@
 package com.harry.ebangbang.function.add_address;
 
 import com.blankj.utilcode.util.ToastUtils;
+import com.harry.ebangbang.app_final.ConstantFinal;
 import com.harry.ebangbang.app_final.DisposableFinal;
 import com.harry.ebangbang.base.presenter.BasePresenter;
 import com.harry.ebangbang.network.entity.CommonEntity;
@@ -32,7 +33,8 @@ public class AddAddressPresenter extends BasePresenter<AddAddressActivity> {
             public void onNext(CommonEntity commonEntity) {
                 if (commonEntity.code == 1) {
                     ToastUtils.showShort("保存成功");
-
+                    view.setResult(ConstantFinal.COMMON_RESULT_CODE);
+                    view.finish();
                 } else {
                     ToastUtils.showShort(commonEntity.msg);
                 }

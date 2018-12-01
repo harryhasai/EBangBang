@@ -49,6 +49,9 @@ public class ShoppingCartPresenter extends BasePresenter<ShoppingCartFragment> {
         });
     }
 
+    /**
+     * 刷新列表, 用于局部刷新, 加减 选择的状态
+     */
     public void updateShoppingList() {
         model.getShoppingList(new Observer<ShoppingCartEntity>() {
             @Override

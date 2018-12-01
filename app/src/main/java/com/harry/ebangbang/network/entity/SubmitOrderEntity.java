@@ -29,13 +29,13 @@ public class SubmitOrderEntity {
          * countBox : 10
          */
 
-        public int total;
+        public double total;
         public ShopBean shop;
         public AddresseeBean addressee;
         public int deliveryTime;
         public double dispatchingCost;
         public MeetMinusBean meetMinus;
-        public int countBox;
+        public double countBox;
         public List<GoodsBean> goods;
 
         public static class ShopBean {
@@ -82,8 +82,8 @@ public class SubmitOrderEntity {
              * meet : 60
              */
 
-            public int minus;
-            public int meet;
+            public double minus;
+            public double meet;
         }
 
         public static class GoodsBean {
