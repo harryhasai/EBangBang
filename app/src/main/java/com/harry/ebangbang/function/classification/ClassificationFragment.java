@@ -1,5 +1,6 @@
 package com.harry.ebangbang.function.classification;
 
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -10,6 +11,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.harry.ebangbang.R;
 import com.harry.ebangbang.app_final.DisposableFinal;
 import com.harry.ebangbang.base.BaseFragment;
+import com.harry.ebangbang.function.search.SearchActivity;
 import com.harry.ebangbang.network.entity.CommonEntity;
 import com.harry.ebangbang.network.entity.SecondCategoryEntity;
 import com.harry.ebangbang.network.entity.TopCategoryEntity;
@@ -68,6 +70,13 @@ public class ClassificationFragment extends BaseFragment<ClassificationPresenter
             @Override
             public void onClick(int id) {
                 mPresenter.getSecondLevel(String.valueOf(id));
+            }
+        });
+
+        etSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(mActivity, SearchActivity.class));
             }
         });
     }

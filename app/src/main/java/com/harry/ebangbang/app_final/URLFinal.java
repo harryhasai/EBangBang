@@ -8,8 +8,8 @@ public class URLFinal {
     /**
      * BaseUrl
      */
-//    public static final String BASE_URL = "http://116.62.218.136:9055/guozongApp/";
-    public static final String BASE_URL = "http://15386nv005.iok.la/guozongApp/";
+    public static final String BASE_URL = "http://116.62.218.136:9055/guozongApp/";
+//    public static final String BASE_URL = "http://15386nv005.iok.la/guozongApp/";
 
     /**
      * 登录
@@ -96,4 +96,8 @@ public class URLFinal {
      * 支付宝下单
      */
     public static final String ALI_PAY = "alipay/api/alipay/createOrder";
+    /**
+     * 全局商品搜索
+     */
+    public static final String SEARCH = "mobile/home/linkName";
 }

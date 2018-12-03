@@ -22,6 +22,7 @@
         android:background="@drawable/shape_home_top_edit1"
         android:drawableStart="@drawable/ic_search13"
         android:drawablePadding="10dp"
+        android:focusable="false"
         android:hint="牛排、快餐"
         android:inputType="text"
         android:paddingStart="18dp"

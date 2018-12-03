@@ -46,7 +46,7 @@ public class HomeAdapter extends BaseMultiItemQuickAdapter<HomeMultiItem, BaseVi
     protected void convert(BaseViewHolder helper, HomeMultiItem item) {
         switch (helper.getItemViewType()) {
             case HomeMultiItem.TOP:  //上部分title
-
+                helper.addOnClickListener(R.id.et_search);
                 break;
             case HomeMultiItem.CENTER://中部banner
                 setupBanner(helper);

@@ -72,6 +72,7 @@
         <activity android:name=".function.add_address.receiving_address.ReceivingAddressActivity" />
         <activity android:name=".function.choose_coupon.ChooseCouponActivity" />
         <activity android:name=".function.payment_method.PaymentMethodActivity" />
+        <activity android:name=".function.search.SearchActivity" />
 
     </application>
 

@@ -1,5 +1,6 @@
 package com.harry.ebangbang.function.home;
 
+import android.content.Intent;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -8,9 +9,11 @@ import android.view.View;
 import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationListener;
 import com.blankj.utilcode.util.ToastUtils;
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.harry.ebangbang.R;
 import com.harry.ebangbang.app_final.DisposableFinal;
 import com.harry.ebangbang.base.BaseFragment;
+import com.harry.ebangbang.function.search.SearchActivity;
 import com.harry.ebangbang.network.entity.HomeBannerEntity;
 import com.harry.ebangbang.network.entity.HomeEntity;
 import com.harry.ebangbang.utils.LocationUtil;
@@ -89,6 +92,17 @@ public class HomeFragment extends BaseFragment<HomePresenter> {
         mList.add(new HomeMultiItem(HomeMultiItem.BOTTOM));
         adapter = new HomeAdapter(mList, mActivity);
         recyclerView.setAdapter(adapter);
+
+        adapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+            @Override
+            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+                switch (view.getId()) {
+                    case R.id.et_search:
+                        startActivity(new Intent(mActivity, SearchActivity.class));
+                        break;
+                }
+            }
+        });
     }
 
     @Override

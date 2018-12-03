@@ -15,4 +15,5 @@ public enum UserInfo {
     IS_LOGIN,
     HEADER_URL,
     HEADER_BASE,
+    SEARCH_HISTORY,
 }
