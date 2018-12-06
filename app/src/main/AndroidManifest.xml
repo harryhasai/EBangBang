@@ -73,6 +73,7 @@
         <activity android:name=".function.choose_coupon.ChooseCouponActivity" />
         <activity android:name=".function.payment_method.PaymentMethodActivity" />
         <activity android:name=".function.search.SearchActivity" />
+        <activity android:name=".function.shop_detail.ShopDetailActivity" />
 
     </application>
 

@@ -1,5 +1,6 @@
 package com.harry.ebangbang.function.search;
 
+import android.content.Intent;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -18,6 +19,7 @@ import com.harry.ebangbang.R;
 import com.harry.ebangbang.app_final.DisposableFinal;
 import com.harry.ebangbang.app_final.UserInfo;
 import com.harry.ebangbang.base.BaseActivity;
+import com.harry.ebangbang.function.shop_detail.ShopDetailActivity;
 import com.harry.ebangbang.network.entity.SearchEntity;
 import com.harry.ebangbang.utils.SPUtils;
 
@@ -75,7 +77,9 @@ public class SearchActivity extends BaseActivity<SearchPresenter> {
         adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                //tijiao
+                Intent intent = new Intent(SearchActivity.this, ShopDetailActivity.class);
+                intent.putExtra("shopId", String.valueOf(mList.get(position).shopId));
+                startActivity(intent);
             }
         });
     }

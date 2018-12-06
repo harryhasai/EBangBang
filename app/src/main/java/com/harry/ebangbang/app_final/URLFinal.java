@@ -100,4 +100,12 @@ public class URLFinal {
      * 全局商品搜索
      */
     public static final String SEARCH = "mobile/home/linkName";
+    /**
+     * 查看商家的分类
+     */
+    public static final String SHOP_DETAIL_CATEGORY = "mobile/goods/selectShopClassify";
+    /**
+     * 查询此商家下的所有商品
+     */
+    public static final String SHOP_DETAIL_CHILD = "mobile/goods/goodsList";
 }

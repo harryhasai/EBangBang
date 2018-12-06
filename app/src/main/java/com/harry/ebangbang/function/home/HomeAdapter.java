@@ -1,12 +1,16 @@
 package com.harry.ebangbang.function.home;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.harry.ebangbang.R;
+import com.harry.ebangbang.function.shop_detail.ShopDetailActivity;
 import com.harry.ebangbang.network.entity.HomeBannerEntity;
 import com.harry.ebangbang.network.entity.HomeEntity;
 import com.youth.banner.Banner;
@@ -56,6 +60,15 @@ public class HomeAdapter extends BaseMultiItemQuickAdapter<HomeMultiItem, BaseVi
                 recyclerView.setLayoutManager(new LinearLayoutManager(mActivity));
                 bottomListAdapter = new HomeBottomListAdapter(R.layout.item_home_data_list, mList);
                 recyclerView.setAdapter(bottomListAdapter);
+
+                bottomListAdapter.setOnItemClickListener(new OnItemClickListener() {
+                    @Override
+                    public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                        Intent intent = new Intent(mContext, ShopDetailActivity.class);
+                        intent.putExtra("shopId", String.valueOf(mList.get(position).id));
+                        mContext.startActivity(intent);
+                    }
+                });
                 break;
         }
     }
