@@ -126,7 +126,6 @@ public class ShopDetailActivity extends BaseActivity<ShopDetailPresenter> {
                 popup.showAtAnchorView(rlBottom, YGravity.ABOVE, XGravity.ALIGN_LEFT);
                 break;
             case R.id.tv_customer_service:
-
                 break;
             case R.id.btn_submit:
 
