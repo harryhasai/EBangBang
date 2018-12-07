@@ -13,6 +13,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.blankj.utilcode.util.ConvertUtils;
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.gavin.com.library.StickyDecoration;
 import com.gavin.com.library.listener.GroupListener;
 import com.harry.ebangbang.R;
@@ -138,6 +139,62 @@ public class ShopDetailActivity extends BaseActivity<ShopDetailPresenter> {
         popupList = new ArrayList<>();
         popupAdapter = popup.setAdapter(popupList);
 
+        popup.removeAll(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popupList.clear();
+                popupAdapter.notifyDataSetChanged();
+                popup.dismiss();
+
+                for (int i = 0; i < childList.size(); i++) {
+                    childList.get(i).goodsCount = 0;
+                }
+                childAdapter.notifyDataSetChanged();
+            }
+        });
+
+        popupAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+            @Override
+            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+                ComplexPopupEntity popupBean = popupList.get(position);
+                switch (view.getId()) {
+                    case R.id.iv_dialog_plus:
+                        popupBean.count++;
+                        popupAdapter.notifyDataSetChanged();
+
+                        for (int i = 0; i < childList.size(); i++) {
+                            ShopDetailChildEntity.DataBean.GoodsBean goodsBean = childList.get(i);
+                            if (goodsBean.id == popupBean.id) {
+                                goodsBean.goodsCount++;
+                            }
+                        }
+                        childAdapter.notifyDataSetChanged();
+                        break;
+                    case R.id.iv_dialog_reduce:
+                        popupBean.count--;
+                        if (popupBean.count == 0) {
+                            popupList.remove(position);
+                            for (int i = 0; i < childList.size(); i++) {
+                                ShopDetailChildEntity.DataBean.GoodsBean goodsBean = childList.get(i);
+                                if (goodsBean.id == popupBean.id) {
+                                    goodsBean.goodsCount = 0;
+                                }
+                            }
+                            popup.setCountText(popupList.size());
+                        } else {
+                            for (int i = 0; i < childList.size(); i++) {
+                                ShopDetailChildEntity.DataBean.GoodsBean goodsBean = childList.get(i);
+                                if (goodsBean.id == popupBean.id) {
+                                    goodsBean.goodsCount--;
+                                }
+                            }
+                        }
+                        popupAdapter.notifyDataSetChanged();
+                        childAdapter.notifyDataSetChanged();
+                        break;
+                }
+            }
+        });
     }
 
     private void initRecyclerView() {
@@ -201,13 +258,13 @@ public class ShopDetailActivity extends BaseActivity<ShopDetailPresenter> {
                 } else {
                     int sameIndex = -1;
                     for (int i = 0; i < popupList.size(); i++) {
-                        if (popupList.get(i).id == bean.id){
+                        if (popupList.get(i).id == bean.id) {
                             sameIndex = i;
                         }
                     }
-                    if (sameIndex == -1){//没有 就加一条
+                    if (sameIndex == -1) {//没有 就加一条
                         popupList.add(new ComplexPopupEntity(bean.id, bean.goodsCount, bean.name, bean.price));
-                    }else{//有找到 更改
+                    } else {//有找到 更改
                         popupList.get(sameIndex).count = bean.goodsCount;
                     }
 

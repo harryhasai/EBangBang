@@ -23,6 +23,7 @@ public class ComplexPopup extends BasePopup<ComplexPopup> {
     private Context context;
     private TextView tvDialogNum;
     private RecyclerView rvDialog;
+    private TextView tvRemoveAll;
 
     public static ComplexPopup create(Context context) {
         return new ComplexPopup(context);
@@ -48,6 +49,7 @@ public class ComplexPopup extends BasePopup<ComplexPopup> {
         tvDialogNum = view.findViewById(R.id.tv_dialog_num);
         rvDialog = view.findViewById(R.id.rv_dialog);
         rvDialog.setLayoutManager(new LinearLayoutManager(context));
+        tvRemoveAll = view.findViewById(R.id.tv_remove_all);
     }
 
     public void setCountText(int num) {
@@ -58,5 +60,9 @@ public class ComplexPopup extends BasePopup<ComplexPopup> {
         ComplexPopupAdapter adapter = new ComplexPopupAdapter(R.layout.item_dialog_shopping_dialog, data);
         rvDialog.setAdapter(adapter);
         return adapter;
+    }
+
+    public void removeAll(View.OnClickListener clickListener) {
+        tvRemoveAll.setOnClickListener(clickListener);
     }
 }
