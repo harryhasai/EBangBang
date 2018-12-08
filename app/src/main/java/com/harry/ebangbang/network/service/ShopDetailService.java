@@ -1,6 +1,7 @@
 package com.harry.ebangbang.network.service;
 
 
+import com.harry.ebangbang.network.entity.CommonEntity;
 import com.harry.ebangbang.network.entity.ShopDetailCategoryEntity;
 import com.harry.ebangbang.network.entity.ShopDetailChildEntity;
 
@@ -24,4 +25,8 @@ public interface ShopDetailService {
     @FormUrlEncoded
     @POST
     Observable<ShopDetailChildEntity> getChild(@Url String url, @FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
+    @POST
+    Observable<CommonEntity> addGoods(@Url String url, @FieldMap Map<String, String> params);
 }

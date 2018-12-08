@@ -3,6 +3,7 @@ package com.harry.ebangbang.function.shop_detail;
 import com.blankj.utilcode.util.ToastUtils;
 import com.harry.ebangbang.app_final.DisposableFinal;
 import com.harry.ebangbang.base.presenter.BasePresenter;
+import com.harry.ebangbang.network.entity.CommonEntity;
 import com.harry.ebangbang.network.entity.ShopDetailCategoryEntity;
 import com.harry.ebangbang.network.entity.ShopDetailChildEntity;
 import com.harry.ebangbang.rx.DisposableManager;
@@ -76,4 +77,61 @@ public class ShopDetailPresenter extends BasePresenter<ShopDetailActivity> {
             }
         });
     }
+
+    public void addGoods(String shopId, final String ids) {
+        model.addGoods(shopId, ids, new Observer<CommonEntity>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                DisposableManager.get().add(DisposableFinal.SHOP_DETAIL_ACTIVITY_ADD_GOODS, d);
+            }
+
+            @Override
+            public void onNext(CommonEntity commonEntity) {
+                if (commonEntity.code == 1) {
+                    view.goToSubmitOrder(ids);
+                } else {
+                    ToastUtils.showShort(commonEntity.msg);
+                }
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                ToastUtils.showShort("添加购物车失败, 请检测您的网络");
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        });
+    }
+
+    public void exitAndSaveGoods(String shopId, String ids) {
+        model.addGoods(shopId, ids, new Observer<CommonEntity>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                DisposableManager.get().add(DisposableFinal.SHOP_DETAIL_ACTIVITY_ADD_GOODS, d);
+            }
+
+            @Override
+            public void onNext(CommonEntity commonEntity) {
+                if (commonEntity.code == 1) {
+                    view.finish();
+                } else {
+                    ToastUtils.showShort(commonEntity.msg);
+                }
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                ToastUtils.showShort("添加购物车失败, 请检测您的网络");
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        });
+    }
+
 }

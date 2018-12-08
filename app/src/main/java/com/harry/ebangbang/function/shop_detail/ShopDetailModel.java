@@ -3,6 +3,7 @@ package com.harry.ebangbang.function.shop_detail;
 import com.harry.ebangbang.app_final.URLFinal;
 import com.harry.ebangbang.app_final.UserInfo;
 import com.harry.ebangbang.base.model.BaseModel;
+import com.harry.ebangbang.network.entity.CommonEntity;
 import com.harry.ebangbang.network.entity.ShopDetailCategoryEntity;
 import com.harry.ebangbang.network.entity.ShopDetailChildEntity;
 import com.harry.ebangbang.network.service.ShopDetailService;
@@ -47,6 +48,19 @@ public class ShopDetailModel extends BaseModel {
         params.put("shopId", shopId);
 
         service.getChild(URLFinal.SHOP_DETAIL_CHILD, params)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(observer);
+    }
+
+    public void addGoods(String shopId, String ids, Observer<CommonEntity> observer) {
+        Map<String, String> params = new HashMap<>();
+
+        params.put("userId", SPUtils.getString(UserInfo.ID.name(), ""));
+        params.put("shopId", shopId);
+        params.put("ids", ids);// [ { "id": 1, "num": 2 }, { "id": 2, "num": 3 } ]
+
+        service.addGoods(URLFinal.SHOP_DETAIL_ADD_GOODS, params)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(observer);

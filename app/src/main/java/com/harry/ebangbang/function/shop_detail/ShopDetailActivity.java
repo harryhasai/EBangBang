@@ -1,5 +1,6 @@
 package com.harry.ebangbang.function.shop_detail;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,10 +14,13 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.blankj.utilcode.util.ConvertUtils;
+import com.blankj.utilcode.util.ToastUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.gavin.com.library.StickyDecoration;
 import com.gavin.com.library.listener.GroupListener;
+import com.google.gson.Gson;
 import com.harry.ebangbang.R;
+import com.harry.ebangbang.app_final.ConstantFinal;
 import com.harry.ebangbang.app_final.DisposableFinal;
 import com.harry.ebangbang.app_final.UserInfo;
 import com.harry.ebangbang.base.BaseActivity;
@@ -24,8 +28,11 @@ import com.harry.ebangbang.function.shop_detail.view.ComplexPopup;
 import com.harry.ebangbang.function.shop_detail.view.ComplexPopupAdapter;
 import com.harry.ebangbang.function.shop_detail.view.ComplexPopupEntity;
 import com.harry.ebangbang.function.shop_detail.view.MyLinearLayoutManager;
+import com.harry.ebangbang.function.shopping_cart.JsonFormatBean;
+import com.harry.ebangbang.function.submit_order.SubmitOrderActivity;
 import com.harry.ebangbang.network.entity.ShopDetailCategoryEntity;
 import com.harry.ebangbang.network.entity.ShopDetailChildEntity;
+import com.harry.ebangbang.network.entity.ShoppingCartEntity;
 import com.harry.ebangbang.utils.SPUtils;
 import com.ruffian.library.RTextView;
 import com.squareup.picasso.Picasso;
@@ -108,6 +115,7 @@ public class ShopDetailActivity extends BaseActivity<ShopDetailPresenter> {
         ArrayList<Object> tags = new ArrayList<>();
         tags.add(DisposableFinal.SHOP_DETAIL_ACTIVITY_GET_CATEGORY);
         tags.add(DisposableFinal.SHOP_DETAIL_ACTIVITY_GET_CHILD);
+        tags.add(DisposableFinal.SHOP_DETAIL_ACTIVITY_ADD_GOODS);
         return tags;
     }
 
@@ -120,7 +128,7 @@ public class ShopDetailActivity extends BaseActivity<ShopDetailPresenter> {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ll_back:
-                finish();
+                exitAndSaveGoods();
                 break;
             case R.id.tv_shopping_cart://打开购物车
                 popup.showAtAnchorView(rlBottom, YGravity.ABOVE, XGravity.ALIGN_LEFT);
@@ -128,7 +136,7 @@ public class ShopDetailActivity extends BaseActivity<ShopDetailPresenter> {
             case R.id.tv_customer_service:
                 break;
             case R.id.btn_submit:
-
+                addGoods();
                 break;
         }
     }
@@ -365,5 +373,55 @@ public class ShopDetailActivity extends BaseActivity<ShopDetailPresenter> {
         childList.clear();
         childList.addAll(data.goods);
         childAdapter.notifyDataSetChanged();
+    }
+
+    private void addGoods() {
+        if (popupList.size() == 0) {
+            ToastUtils.showShort("您还未选择商品, 不能结算");
+            return;
+        }
+        List<JsonFormatBean> jsonList = new ArrayList<>();
+        for (int i = 0; i < popupList.size(); i++) {
+            ComplexPopupEntity popupEntity = popupList.get(i);
+            //[{"id":"1","num":"4"},{"id":"4","num":"1"}]
+//            jsonList.add(new JsonFormatBean(String.valueOf(popupEntity.id), String.valueOf(popupEntity.count)));
+            jsonList.add(new JsonFormatBean(popupEntity.id, popupEntity.count));
+        }
+        Gson gson = new Gson();
+        String s = gson.toJson(jsonList);
+
+        mPresenter.addGoods(shopId, s);
+    }
+
+    private void exitAndSaveGoods() {
+        if (popupList.size() > 0) {
+            List<JsonFormatBean> jsonList = new ArrayList<>();
+            for (int i = 0; i < popupList.size(); i++) {
+                ComplexPopupEntity popupEntity = popupList.get(i);
+                //[{"id":"1","num":"4"},{"id":"4","num":"1"}]
+//                jsonList.add(new JsonFormatBean(String.valueOf(popupEntity.id), String.valueOf(popupEntity.count)));
+                jsonList.add(new JsonFormatBean(popupEntity.id, popupEntity.count));
+            }
+            Gson gson = new Gson();
+            String s = gson.toJson(jsonList);
+
+            mPresenter.exitAndSaveGoods(shopId, s);
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        exitAndSaveGoods();
+    }
+
+    /**
+     * 提交完成, 跳转订单页面
+     */
+    public void goToSubmitOrder(String s) {
+        Intent intent = new Intent(this, SubmitOrderActivity.class);
+        intent.putExtra("shopId", shopId);
+        intent.putExtra("ids", s);
+        startActivity(intent);
+        finish();
     }
 }

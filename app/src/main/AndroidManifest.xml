@@ -74,6 +74,7 @@
         <activity android:name=".function.payment_method.PaymentMethodActivity" />
         <activity android:name=".function.search.SearchActivity" />
         <activity android:name=".function.shop_detail.ShopDetailActivity" />
+        <activity android:name=".function.order_detail.OrderDetailActivity" />
 
     </application>
 

@@ -79,7 +79,8 @@ public class ShoppingCartFragment extends BaseFragment<ShoppingCartPresenter> {
                             ShoppingCartEntity.DataBean.GoodsBean goodsBean = bean.goods.get(i);
                             if (goodsBean.standby1 == 0) {//0 选中 1 不选中
                                 //[{"id":"1","num":"4"},{"id":"4","num":"1"}]
-                                jsonList.add(new JsonFormatBean(String.valueOf(goodsBean.goodsId), String.valueOf(goodsBean.amount)));
+//                                jsonList.add(new JsonFormatBean(String.valueOf(goodsBean.goodsId), String.valueOf(goodsBean.amount)));
+                                jsonList.add(new JsonFormatBean(goodsBean.goodsId, goodsBean.amount));
                             }
                         }
                         Gson gson = new Gson();

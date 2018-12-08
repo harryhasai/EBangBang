@@ -5,19 +5,19 @@ package com.harry.ebangbang.function.shopping_cart;
  */
 public class JsonFormatBean {
 
-    private String num;
-    private String id;
+    private int num;
+    private int id;
 
-    public JsonFormatBean(String id, String num) {
+    public JsonFormatBean(int id, int num) {
         this.num = num;
         this.id = id;
     }
 
-    public String getNum() {
+    public int getNum() {
         return num;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 }
