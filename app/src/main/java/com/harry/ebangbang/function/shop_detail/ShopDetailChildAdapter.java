@@ -1,6 +1,7 @@
 package com.harry.ebangbang.function.shop_detail;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.SparseIntArray;
@@ -8,11 +9,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.blankj.utilcode.util.ConvertUtils;
 import com.harry.ebangbang.R;
 import com.harry.ebangbang.app_final.UserInfo;
+import com.harry.ebangbang.function.goods_detail.GoodsDetailActivity;
 import com.harry.ebangbang.network.entity.ShopDetailChildEntity;
 import com.harry.ebangbang.utils.SPUtils;
 import com.squareup.picasso.Picasso;
@@ -83,6 +86,15 @@ public class ShopDetailChildAdapter extends RecyclerView.Adapter<ShopDetailChild
                 }
             }
         });
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mListener != null) {
+                    mListener.onItemClick(bean.id);
+                }
+            }
+        });
     }
 
     @Override
@@ -104,10 +116,12 @@ public class ShopDetailChildAdapter extends RecyclerView.Adapter<ShopDetailChild
         TextView tvCount;
         @BindView(R.id.iv_plus)
         ImageView ivPlus;
+        RelativeLayout itemView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+            this.itemView = (RelativeLayout) itemView;
         }
     }
 
@@ -115,6 +129,8 @@ public class ShopDetailChildAdapter extends RecyclerView.Adapter<ShopDetailChild
         void plus(int adapterPosition, int id);
 
         void reduce(int adapterPosition, int id);
+
+        void onItemClick(int goodsId);
     }
 
     private OnChangeNumberListener mListener;

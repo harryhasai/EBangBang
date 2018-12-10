@@ -78,6 +78,10 @@ public class HomeFragment extends BaseFragment<HomePresenter> {
     }
 
     private void initRecyclerView() {
+        // 设置下拉进度的背景颜色，默认就是白色的
+        swipeRefreshLayout.setProgressBackgroundColorSchemeResource(android.R.color.white);
+        // 设置下拉进度的主题颜色
+        swipeRefreshLayout.setColorSchemeResources(R.color.colorAccent, R.color.colorPrimary, R.color.colorPrimaryDark);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -126,10 +130,12 @@ public class HomeFragment extends BaseFragment<HomePresenter> {
     }
 
     public void setRefreshing(boolean refreshing) {
-        if (refreshing) {
-            SwipeRefreshLayoutRefreshingUtil.setRefreshing(swipeRefreshLayout);
-        } else {
-            swipeRefreshLayout.setRefreshing(false);
+        if (swipeRefreshLayout != null) {
+            if (refreshing) {
+                SwipeRefreshLayoutRefreshingUtil.setRefreshing(swipeRefreshLayout);
+            } else {
+                swipeRefreshLayout.setRefreshing(false);
+            }
         }
     }
 

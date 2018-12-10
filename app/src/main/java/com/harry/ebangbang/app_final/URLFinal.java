@@ -8,9 +8,9 @@ public class URLFinal {
     /**
      * BaseUrl
      */
-//    public static final String BASE_URL = "http://116.62.218.136:9055/guozongApp/";
+    public static final String BASE_URL = "http://116.62.218.136:9055/guozongApp/";
 //    public static final String BASE_URL = "http://15386nv005.iok.la/guozongApp/";
-    public static final String BASE_URL = "http://192.168.0.116:8080/guozongApp/";
+//    public static final String BASE_URL = "http://192.168.0.116:8080/guozongApp/";
 
     /**
      * 登录
@@ -113,4 +113,8 @@ public class URLFinal {
      * 批量增加购物车
      */
     public static final String SHOP_DETAIL_ADD_GOODS = "mobile/shoppingTrolley/batchAddShoppingTrolley";
+    /**
+     * 查询商品详情
+     */
+    public static final String GET_GOODS_DETAIL = "mobile/goods/goodsDetails";
 }

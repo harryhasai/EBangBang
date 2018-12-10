@@ -12,6 +12,7 @@ import com.harry.ebangbang.R;
 import com.harry.ebangbang.app_final.DisposableFinal;
 import com.harry.ebangbang.base.BaseFragment;
 import com.harry.ebangbang.function.search.SearchActivity;
+import com.harry.ebangbang.function.shop_detail.ShopDetailActivity;
 import com.harry.ebangbang.network.entity.CommonEntity;
 import com.harry.ebangbang.network.entity.SecondCategoryEntity;
 import com.harry.ebangbang.network.entity.TopCategoryEntity;
@@ -77,6 +78,15 @@ public class ClassificationFragment extends BaseFragment<ClassificationPresenter
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(mActivity, SearchActivity.class));
+            }
+        });
+
+        childCategoryAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                Intent intent = new Intent(mActivity, ShopDetailActivity.class);
+                intent.putExtra("shopId", String.valueOf(mSecondCategoryList.get(position).id));
+                startActivity(intent);
             }
         });
     }

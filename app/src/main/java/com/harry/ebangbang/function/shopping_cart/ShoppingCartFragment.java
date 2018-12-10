@@ -2,6 +2,7 @@ package com.harry.ebangbang.function.shopping_cart;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -18,6 +19,7 @@ import com.harry.ebangbang.app_final.DisposableFinal;
 import com.harry.ebangbang.base.BaseFragment;
 import com.harry.ebangbang.function.submit_order.SubmitOrderActivity;
 import com.harry.ebangbang.network.entity.ShoppingCartEntity;
+import com.harry.ebangbang.utils.SwipeRefreshLayoutRefreshingUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +40,8 @@ public class ShoppingCartFragment extends BaseFragment<ShoppingCartPresenter> {
     TextView tvTitle;
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
+    @BindView(R.id.swipe_refresh_layout)
+    SwipeRefreshLayout swipeRefreshLayout;
     Unbinder unbinder;
     private List<ShoppingCartEntity.DataBean> mList;
     private ShoppingCartAdapter adapter;
@@ -61,9 +65,21 @@ public class ShoppingCartFragment extends BaseFragment<ShoppingCartPresenter> {
     }
 
     private void initRecyclerView() {
+        // 设置下拉进度的背景颜色，默认就是白色的
+        swipeRefreshLayout.setProgressBackgroundColorSchemeResource(android.R.color.white);
+        // 设置下拉进度的主题颜色
+        swipeRefreshLayout.setColorSchemeResources(R.color.colorAccent, R.color.colorPrimary, R.color.colorPrimaryDark);
+
         recyclerView.setLayoutManager(new LinearLayoutManager(mActivity));
         adapter = new ShoppingCartAdapter(R.layout.item_shopping_cart, mList);
         recyclerView.setAdapter(adapter);
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                mPresenter.getShoppingList();
+            }
+        });
 
         adapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
             @Override
@@ -165,6 +181,16 @@ public class ShoppingCartFragment extends BaseFragment<ShoppingCartPresenter> {
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+    }
+
+    public void setRefreshing(boolean refreshing) {
+        if (swipeRefreshLayout != null) {
+            if (refreshing) {
+                SwipeRefreshLayoutRefreshingUtil.setRefreshing(swipeRefreshLayout);
+            } else {
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        }
     }
 
     public void getShoppingList(List<ShoppingCartEntity.DataBean> data) {

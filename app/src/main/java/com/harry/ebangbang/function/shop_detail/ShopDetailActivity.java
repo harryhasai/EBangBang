@@ -3,6 +3,7 @@ package com.harry.ebangbang.function.shop_detail;
 import android.content.Intent;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -24,6 +25,7 @@ import com.harry.ebangbang.app_final.ConstantFinal;
 import com.harry.ebangbang.app_final.DisposableFinal;
 import com.harry.ebangbang.app_final.UserInfo;
 import com.harry.ebangbang.base.BaseActivity;
+import com.harry.ebangbang.function.goods_detail.GoodsDetailActivity;
 import com.harry.ebangbang.function.shop_detail.view.ComplexPopup;
 import com.harry.ebangbang.function.shop_detail.view.ComplexPopupAdapter;
 import com.harry.ebangbang.function.shop_detail.view.ComplexPopupEntity;
@@ -55,6 +57,8 @@ public class ShopDetailActivity extends BaseActivity<ShopDetailPresenter> {
 
     @BindView(R.id.tv_title)
     TextView tvTitle;
+    @BindView(R.id.tv_shopping_cart_number)
+    TextView tvShoppingCartNumber;
     @BindView(R.id.iv_shop_img)
     ImageView ivShopImg;
     @BindView(R.id.tv_shop_name)
@@ -157,6 +161,7 @@ public class ShopDetailActivity extends BaseActivity<ShopDetailPresenter> {
                     childList.get(i).goodsCount = 0;
                 }
                 childAdapter.notifyDataSetChanged();
+                tvShoppingCartNumber.setVisibility(View.GONE);
             }
         });
 
@@ -278,6 +283,9 @@ public class ShopDetailActivity extends BaseActivity<ShopDetailPresenter> {
                 }
                 popup.setCountText(popupList.size());
                 popupAdapter.notifyDataSetChanged();
+
+                tvShoppingCartNumber.setVisibility(View.VISIBLE);
+                tvShoppingCartNumber.setText(String.valueOf(popupList.size()));
             }
 
             @Override
@@ -301,6 +309,25 @@ public class ShopDetailActivity extends BaseActivity<ShopDetailPresenter> {
                 }
                 childAdapter.notifyDataSetChanged();
                 popupAdapter.notifyDataSetChanged();
+
+                if (popupList.size() == 0) {
+                    tvShoppingCartNumber.setVisibility(View.GONE);
+                }
+                tvShoppingCartNumber.setText(String.valueOf(popupList.size()));
+            }
+
+            @Override
+            public void onItemClick(int goodsId) {
+                Intent intent = new Intent(ShopDetailActivity.this, GoodsDetailActivity.class);
+                intent.putExtra("goodsId", String.valueOf(goodsId));
+                if (popupList.size() != 0) {
+                    for (int i = 0; i < popupList.size(); i++) {
+                        if (popupList.get(i).id == goodsId) {
+                            intent.putExtra("goodsCount", String.valueOf(popupList.get(i).count));
+                        }
+                    }
+                }
+                startActivityForResult(intent, ConstantFinal.COMMON_REQUEST_CODE);
             }
         });
 
@@ -406,12 +433,15 @@ public class ShopDetailActivity extends BaseActivity<ShopDetailPresenter> {
             String s = gson.toJson(jsonList);
 
             mPresenter.exitAndSaveGoods(shopId, s);
+        } else {
+            finish();
         }
     }
 
     @Override
     public void onBackPressed() {
         exitAndSaveGoods();
+//        super.onBackPressed();
     }
 
     /**
@@ -423,5 +453,32 @@ public class ShopDetailActivity extends BaseActivity<ShopDetailPresenter> {
         intent.putExtra("ids", s);
         startActivity(intent);
         finish();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (data != null) {
+            if (requestCode == ConstantFinal.COMMON_REQUEST_CODE && resultCode == ConstantFinal.COMMON_RESULT_CODE) {
+                String goodsId = data.getStringExtra("goodsId");
+                int goodsCount = data.getIntExtra("goodsCount", 0);
+
+                for (int i = 0; i < childList.size(); i++) {
+                    ShopDetailChildEntity.DataBean.GoodsBean goodsBean = childList.get(i);
+                    if (goodsBean.id == Integer.valueOf(goodsId)) {
+                        goodsBean.goodsCount = goodsCount;
+                        childAdapter.notifyDataSetChanged();
+                    }
+                }
+
+                for (int i = 0; i < popupList.size(); i++) {
+                    ComplexPopupEntity popupEntity = popupList.get(i);
+                    if (popupEntity.id == Integer.valueOf(goodsId)) {
+                        popupEntity.count = goodsCount;
+                        popupAdapter.notifyDataSetChanged();
+                    }
+                }
+            }
+        }
     }
 }

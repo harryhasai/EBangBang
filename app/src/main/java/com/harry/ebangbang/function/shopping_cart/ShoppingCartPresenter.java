@@ -40,11 +40,12 @@ public class ShoppingCartPresenter extends BasePresenter<ShoppingCartFragment> {
             @Override
             public void onError(Throwable e) {
                 ToastUtils.showShort("网络连接错误");
+                view.setRefreshing(false);
             }
 
             @Override
             public void onComplete() {
-
+                view.setRefreshing(false);
             }
         });
     }

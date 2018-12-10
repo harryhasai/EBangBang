@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="15dp"
+    android:background="@drawable/layer_list_bottom_line1"
+    android:paddingBottom="15dp"
+    tools:ignore="HardcodedText">
+
+    <ImageView
+        android:id="@+id/iv_user_header"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:contentDescription="user"
+        android:src="@drawable/ic_user_header" />
+
+    <TextView
+        android:id="@+id/tv_user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_toEndOf="@id/iv_user_header"
+        android:includeFontPadding="false"
+        android:text="PasserBy"
+        android:textColor="@color/black"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:includeFontPadding="false"
+        android:text="2小时前"
+        android:textColor="@color/black"
+        android:textSize="12sp" />
+
+    <LinearLayout
+        android:id="@+id/ll_star"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@id/tv_user_name"
+        android:layout_alignBottom="@id/iv_user_header"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="13dp"
+            android:layout_height="12dp"
+            android:layout_marginEnd="2dp"
+            android:src="@drawable/ic_star" />
+
+        <ImageView
+            android:layout_width="13dp"
+            android:layout_height="12dp"
+            android:layout_marginEnd="2dp"
+            android:src="@drawable/ic_star" />
+
+        <ImageView
+            android:layout_width="13dp"
+            android:layout_height="12dp"
+            android:layout_marginEnd="2dp"
+            android:src="@drawable/ic_star" />
+
+        <ImageView
+            android:layout_width="13dp"
+            android:layout_height="12dp"
+            android:layout_marginEnd="2dp"
+            android:src="@drawable/ic_star" />
+
+        <ImageView
+            android:layout_width="13dp"
+            android:layout_height="12dp"
+            android:layout_marginEnd="2dp"
+            android:src="@drawable/ic_star" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_comment_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ll_star"
+        android:layout_alignStart="@id/tv_user_name"
+        android:layout_marginTop="10dp"
+        android:text="意大利牛排, 真的好吃啊"
+        android:textColor="@color/black"
+        android:textSize="12sp" />
+
+    <ImageView
+        android:id="@+id/iv_comment_img"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_below="@id/tv_comment_content"
+        android:layout_alignStart="@id/tv_user_name"
+        android:layout_marginTop="7dp"
+        android:contentDescription="comment"
+        android:visibility="gone" />
+</RelativeLayout>
