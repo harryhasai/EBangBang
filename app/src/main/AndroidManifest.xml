@@ -76,6 +76,8 @@
         <activity android:name=".function.shop_detail.ShopDetailActivity" />
         <activity android:name=".function.order_detail.OrderDetailActivity" />
         <activity android:name=".function.goods_detail.GoodsDetailActivity" />
+        <activity android:name=".function.order_manage.OrderManageActivity" />
+        <activity android:name=".function.add_comment.AddCommentActivity" />
 
     </application>
 

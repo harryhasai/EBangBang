@@ -117,4 +117,20 @@ public class URLFinal {
      * 查询商品详情
      */
     public static final String GET_GOODS_DETAIL = "mobile/goods/goodsDetails";
+    /**
+     * 查询用户所有订单
+     */
+    public static final String GET_ORDER_LIST = "modele/orderForm/lockOrderForm1";
+    /**
+     * 查询用户订单详情
+     */
+    public static final String ORDER_DETAIL = "modele/orderForm/selectOrderFormId";
+    /**
+     * 增加时候查询订单评价订单的信息
+     */
+    public static final String GET_COMMENT_INFO = "modele/orderForm/selectOrderForm";
+    /**
+     * 增加评论接口
+     */
+    public static final String ADD_COMMENT = "modele/orderForm/addAppraise";
 }

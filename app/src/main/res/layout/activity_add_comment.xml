@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:ignore="HardcodedText">
+
+    <include layout="@layout/layout_toolbar" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="10dp"
+        android:background="@color/white"
+        android:elevation="3dp">
+
+        <ImageView
+            android:id="@+id/iv_rider_img"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
+            android:contentDescription="header"
+            android:src="@drawable/ic_user_header" />
+
+        <TextView
+            android:id="@+id/tv_rider_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/iv_rider_img"
+            android:layout_marginStart="16dp"
+            android:layout_toEndOf="@id/iv_rider_img"
+            android:text="骑手"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_rider_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_rider_name"
+            android:layout_alignStart="@id/tv_rider_name"
+            android:layout_marginTop="10dp"
+            android:text="12月3日11:55左右送达"
+            android:textColor="@color/black"
+            android:textSize="13sp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_rider_time"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="15dp">
+
+            <CheckBox
+                android:id="@+id/cb_yes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="50dp"
+                android:background="@drawable/select_comment"
+                android:button="@null"
+                android:paddingStart="20dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="20dp"
+                android:paddingBottom="5dp"
+                android:text="满意"
+                android:textColor="@color/black"
+                android:textSize="13sp" />
+
+            <CheckBox
+                android:id="@+id/cb_no"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/select_comment"
+                android:button="@null"
+                android:paddingStart="20dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="20dp"
+                android:paddingBottom="5dp"
+                android:text="不满意"
+                android:textColor="@color/black"
+                android:textSize="13sp" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@color/white"
+        android:elevation="3dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/layer_list_bottom_line2">
+
+            <ImageView
+                android:id="@+id/iv_shop_img"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_margin="12dp"
+                android:contentDescription="header"
+                android:src="@drawable/ic_user_header" />
+
+            <TextView
+                android:id="@+id/tv_shop_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="东北锅包肉"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp">
+
+            <CheckBox
+                android:id="@+id/cb_star1"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginEnd="11dp"
+                android:background="@drawable/select_star"
+                android:button="@null" />
+
+            <CheckBox
+                android:id="@+id/cb_star2"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginEnd="11dp"
+                android:background="@drawable/select_star"
+                android:button="@null" />
+
+            <CheckBox
+                android:id="@+id/cb_star3"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginEnd="11dp"
+                android:background="@drawable/select_star"
+                android:button="@null" />
+
+            <CheckBox
+                android:id="@+id/cb_star4"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginEnd="11dp"
+                android:background="@drawable/select_star"
+                android:button="@null" />
+
+            <CheckBox
+                android:id="@+id/cb_star5"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/select_star"
+                android:button="@null" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/et_comment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="16dp"
+            android:background="#f7f7f7"
+            android:gravity="top|start"
+            android:hint="期待你的五星好评哟~"
+            android:inputType="textMultiLine"
+            android:lines="5"
+            android:padding="10dp"
+            android:textColorHint="@color/black2"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_submit"
+        android:layout_width="230dp"
+        android:layout_height="39dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="36dp"
+        android:background="@drawable/shape_submit_button_bg"
+        android:text="提交"
+        android:textColor="@color/white"
+        android:textSize="15sp" />
+</LinearLayout>

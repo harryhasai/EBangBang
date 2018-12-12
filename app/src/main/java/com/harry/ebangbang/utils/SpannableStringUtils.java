@@ -19,7 +19,7 @@ public class SpannableStringUtils {
      */
     public static SpannableString setTextColor(String text, int startPosition, int endPosition) {
         SpannableString spannableString = new SpannableString(text);
-        ForegroundColorSpan colorSpan = new ForegroundColorSpan(Color.parseColor("#0179E8"));
+        ForegroundColorSpan colorSpan = new ForegroundColorSpan(Color.parseColor("#ff0000"));
         spannableString.setSpan(colorSpan, startPosition, endPosition, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
         return spannableString;
     }

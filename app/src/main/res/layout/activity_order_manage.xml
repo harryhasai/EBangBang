@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:rtv="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:ignore="HardcodedText">
+
+    <include layout="@layout/layout_toolbar" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/layer_list_bottom_line2"
+            android:paddingTop="20dp"
+            android:paddingStart="14dp"
+            android:paddingEnd="14dp"
+            android:paddingBottom="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="我的订单"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|bottom"
+                android:text="查看全部订单"
+                android:textColor="#4d4d4d"
+                android:textSize="12sp" />
+        </FrameLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:paddingStart="14dp"
+            android:paddingEnd="14dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="12dp">
+
+            <com.ruffian.library.RTextView
+                android:id="@+id/tv_text1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="7dp"
+                android:text="待付款"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                rtv:icon_direction="top"
+                rtv:icon_height="20dp"
+                rtv:icon_src_normal="@drawable/ic_order_manage1"
+                rtv:icon_width="20dp" />
+
+            <com.ruffian.library.RTextView
+                android:id="@+id/tv_text2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_toStartOf="@id/tv_text3"
+                android:layout_toEndOf="@id/tv_text1"
+                android:drawablePadding="7dp"
+                android:gravity="center_horizontal"
+                android:text="待配送"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                rtv:icon_direction="top"
+                rtv:icon_height="20dp"
+                rtv:icon_src_normal="@drawable/ic_order_manage2"
+                rtv:icon_width="20dp" />
+
+            <com.ruffian.library.RTextView
+                android:id="@+id/tv_text3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:drawablePadding="7dp"
+                android:text="待收货"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                rtv:icon_direction="top"
+                rtv:icon_height="20dp"
+                rtv:icon_src_normal="@drawable/ic_order_manage3"
+                rtv:icon_width="20dp" />
+
+            <com.ruffian.library.RTextView
+                android:id="@+id/tv_text4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_toStartOf="@id/tv_text5"
+                android:layout_toEndOf="@id/tv_text3"
+                android:drawablePadding="7dp"
+                android:gravity="center_horizontal"
+                android:text="待评价"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                rtv:icon_direction="top"
+                rtv:icon_height="20dp"
+                rtv:icon_src_normal="@drawable/ic_order_manage4"
+                rtv:icon_width="20dp" />
+
+            <com.ruffian.library.RTextView
+                android:id="@+id/tv_text5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:drawablePadding="7dp"
+                android:text="退换货"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                rtv:icon_direction="top"
+                rtv:icon_height="20dp"
+                rtv:icon_src_normal="@drawable/ic_order_manage5"
+                rtv:icon_width="20dp" />
+        </RelativeLayout>
+
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_refresh_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:overScrollMode="never" />
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
