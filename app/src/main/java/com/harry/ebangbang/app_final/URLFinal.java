@@ -134,4 +134,20 @@ public class URLFinal {
      * 增加评论接口
      */
     public static final String ADD_COMMENT = "modele/orderForm/addAppraise";
+    /**
+     * 进入个人中心
+     */
+    public static final String GET_USER_INFO = "mobile/PersonalCenter/enterInto";
+    /**
+     * 上传头像
+     */
+    public static final String UPLOAD_HEADER = "mobile/PersonalCenter/uploadHeadPortrait";
+    /**
+     * 获取客服电话
+     */
+    public static final String CUSTOMER_SERVICE = "mobile/commonTools/lockOrderForm";
+    /**
+     * 修改个人信息
+     */
+    public static final String SAVE_USER_INFO = "mobile/PersonalCenter/updateDetails";
 }

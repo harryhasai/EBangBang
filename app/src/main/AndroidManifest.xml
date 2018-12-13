@@ -81,6 +81,7 @@
         <activity android:name=".function.order_manage.OrderManageActivity" />
         <activity android:name=".function.add_comment.AddCommentActivity" />
         <activity android:name=".function.order_manage.order_status.OrderStatusActivity" />
+        <activity android:name=".function.user_info.UserInfoActivity" />
 
     </application>
 
