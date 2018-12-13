@@ -8,7 +8,8 @@ public class URLFinal {
     /**
      * BaseUrl
      */
-    public static final String BASE_URL = "http://116.62.218.136:9055/guozongApp/";
+//    public static final String BASE_URL = "http://116.62.218.136:9055/guozongApp/";
+    public static final String BASE_URL = "https://www.ebbtcps.com/";
 //    public static final String BASE_URL = "http://15386nv005.iok.la/guozongApp/";
 //    public static final String BASE_URL = "http://192.168.0.116:8080/guozongApp/";
 

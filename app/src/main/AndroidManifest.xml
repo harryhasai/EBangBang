@@ -53,7 +53,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".function.main.MainActivity" />
+        <activity
+            android:name=".function.main.MainActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize" />
         <activity android:name=".function.login.LoginActivity" />
         <!--微信-->
         <activity
@@ -78,6 +80,7 @@
         <activity android:name=".function.goods_detail.GoodsDetailActivity" />
         <activity android:name=".function.order_manage.OrderManageActivity" />
         <activity android:name=".function.add_comment.AddCommentActivity" />
+        <activity android:name=".function.order_manage.order_status.OrderStatusActivity" />
 
     </application>
 

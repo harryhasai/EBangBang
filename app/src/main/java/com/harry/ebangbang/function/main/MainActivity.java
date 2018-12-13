@@ -1,5 +1,7 @@
 package com.harry.ebangbang.function.main;
 
+import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.KeyEvent;
@@ -44,6 +46,12 @@ public class MainActivity extends BaseActivity {
         setupBottomNavigationBar();
 
         bottomNavigationBar.selectTab(0);
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
+        // super.onSaveInstanceState(outState, outPersistentState);
+        //不保存因为异常原因丢失掉的界面状态
     }
 
     @Override

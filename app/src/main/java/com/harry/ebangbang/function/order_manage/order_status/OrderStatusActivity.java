@@ -1,4 +1,4 @@
-package com.harry.ebangbang.function.order_manage;
+package com.harry.ebangbang.function.order_manage.order_status;
 
 import android.content.Intent;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -11,16 +11,9 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.harry.ebangbang.R;
 import com.harry.ebangbang.app_final.DisposableFinal;
 import com.harry.ebangbang.base.BaseActivity;
-import com.harry.ebangbang.event.AddCommentEvent;
 import com.harry.ebangbang.function.order_detail.OrderDetailActivity;
-import com.harry.ebangbang.function.order_manage.order_status.OrderStatusActivity;
 import com.harry.ebangbang.network.entity.OrderManageEntity;
 import com.harry.ebangbang.utils.SwipeRefreshLayoutRefreshingUtil;
-import com.ruffian.library.RTextView;
-
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,44 +23,53 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
- * Created by Harry on 2018/12/10.
- * 订单管理页面
+ * Created by Harry on 2018/12/13.
+ * 单一状态的列表
+ * 订单状态  -1未付款 2 待配送  4待收货  5 订单已完成未评价   6退返货    7完成并已评价
  */
-public class OrderManageActivity extends BaseActivity<OrderManagePresenter> {
+public class OrderStatusActivity extends BaseActivity<OrderStatusPresenter> {
 
     @BindView(R.id.tv_title)
     TextView tvTitle;
-    @BindView(R.id.tv_text1)
-    RTextView tvText1;
-    @BindView(R.id.tv_text2)
-    RTextView tvText2;
-    @BindView(R.id.tv_text3)
-    RTextView tvText3;
-    @BindView(R.id.tv_text4)
-    RTextView tvText4;
-    @BindView(R.id.tv_text5)
-    RTextView tvText5;
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
     @BindView(R.id.swipe_refresh_layout)
     SwipeRefreshLayout swipeRefreshLayout;
+
     private int pageNum = 1;
-    private OrderManageAdapter adapter;
     private boolean isLoadMore;
+    private OrderStatusAdapter adapter;
+    private String status;
 
     @Override
     protected int setupView() {
-        return R.layout.activity_order_manage;
+        return R.layout.activity_order_status;
     }
 
     @Override
     protected void initView() {
         ButterKnife.bind(this);
-        EventBus.getDefault().register(this);
+        status = getIntent().getStringExtra("status");
+        switch (status) {
+            case "-1":
+                tvTitle.setText("待付款");
+                break;
+            case "2":
+                tvTitle.setText("待配送");
+                break;
+            case "4":
+                tvTitle.setText("待收货");
+                break;
+            case "5":
+                tvTitle.setText("待评价");
+                break;
+            case "6":
+                tvTitle.setText("退换货");
+                break;
+        }
 
-        tvTitle.setText("我的订单");
         initRecyclerView();
-        mPresenter.getOrderList(null, pageNum);
+        mPresenter.getOrderList(status, pageNum);
     }
 
     @Override
@@ -78,8 +80,17 @@ public class OrderManageActivity extends BaseActivity<OrderManagePresenter> {
     }
 
     @Override
-    protected OrderManagePresenter bindPresenter() {
-        return new OrderManagePresenter();
+    protected OrderStatusPresenter bindPresenter() {
+        return new OrderStatusPresenter();
+    }
+
+    @OnClick({R.id.ll_back})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.ll_back:
+                finish();
+                break;
+        }
     }
 
     private void initRecyclerView() {
@@ -93,12 +104,12 @@ public class OrderManageActivity extends BaseActivity<OrderManagePresenter> {
                 adapter.setEnableLoadMore(false);
                 pageNum = 1;
                 isLoadMore = false;
-                mPresenter.getOrderList(null, pageNum);
+                mPresenter.getOrderList(status, pageNum);
             }
         });
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new OrderManageAdapter(R.layout.item_order_manage);
+        adapter = new OrderStatusAdapter(R.layout.item_order_status);
 //        adapter = new OrderManageAdapter(R.layout.item_order_manage, mList);
         recyclerView.setAdapter(adapter);
 
@@ -109,7 +120,7 @@ public class OrderManageActivity extends BaseActivity<OrderManagePresenter> {
                 adapter.setEnableLoadMore(true);
                 pageNum++;
                 isLoadMore = true;
-                mPresenter.getOrderList(null, pageNum);
+                mPresenter.getOrderList(status, pageNum);
 
             }
         }, recyclerView);
@@ -119,47 +130,11 @@ public class OrderManageActivity extends BaseActivity<OrderManagePresenter> {
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 List data = adapter.getData();
                 OrderManageEntity.DataBean bean = (OrderManageEntity.DataBean) data.get(position);
-                Intent intent = new Intent(OrderManageActivity.this, OrderDetailActivity.class);
+                Intent intent = new Intent(OrderStatusActivity.this, OrderDetailActivity.class);
                 intent.putExtra("orderId", String.valueOf(bean.id));
                 startActivity(intent);
             }
         });
-    }
-
-    @OnClick({R.id.ll_back, R.id.tv_text1, R.id.tv_text2, R.id.tv_text3, R.id.tv_text4, R.id.tv_text5})
-    public void onViewClicked(View view) {
-        //订单状态  -1未付款 2 待配送  4待收货  5 订单已完成未评价   6退返货    7完成并已评价
-        Intent intent;
-        switch (view.getId()) {
-            case R.id.ll_back:
-                finish();
-                break;
-            case R.id.tv_text1://待付款
-                intent = new Intent(this, OrderStatusActivity.class);
-                intent.putExtra("status", String.valueOf(-1));
-                startActivity(intent);
-                break;
-            case R.id.tv_text2://待配送
-                intent = new Intent(this, OrderStatusActivity.class);
-                intent.putExtra("status", String.valueOf(2));
-                startActivity(intent);
-                break;
-            case R.id.tv_text3://待收货
-                intent = new Intent(this, OrderStatusActivity.class);
-                intent.putExtra("status", String.valueOf(4));
-                startActivity(intent);
-                break;
-            case R.id.tv_text4://待评价
-                intent = new Intent(this, OrderStatusActivity.class);
-                intent.putExtra("status", String.valueOf(5));
-                startActivity(intent);
-                break;
-            case R.id.tv_text5://退换货
-                intent = new Intent(this, OrderStatusActivity.class);
-                intent.putExtra("status", String.valueOf(6));
-                startActivity(intent);
-                break;
-        }
     }
 
     public void setRefreshing(boolean refreshing) {
@@ -187,19 +162,4 @@ public class OrderManageActivity extends BaseActivity<OrderManagePresenter> {
         adapter.loadMoreEnd();
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        //注销注册
-        EventBus.getDefault().removeAllStickyEvents();
-        EventBus.getDefault().unregister(this);
-    }
-
-    @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
-    public void paySuccessEvent(AddCommentEvent addCommentEvent) {
-        //接收消息, 刷新列表, (在评价过后)
-        pageNum = 1;
-        isLoadMore = false;
-        mPresenter.getOrderList(null, pageNum);
-    }
 }
