@@ -2,7 +2,6 @@ package com.harry.ebangbang.network.service;
 
 
 import com.harry.ebangbang.network.entity.CommonEntity;
-import com.harry.ebangbang.network.entity.OrderDetailEntity;
 
 import java.util.Map;
 
@@ -15,13 +14,9 @@ import retrofit2.http.Url;
 /**
  * Created by Harry on 2018/8/20.
  */
-public interface OrderDetailService {
+public interface ModifyAddressService {
 
     @FormUrlEncoded
     @POST
-    Observable<OrderDetailEntity> getOrderDetail(@Url String url, @FieldMap Map<String, String> params);
-
-    @FormUrlEncoded
-    @POST
-    Observable<CommonEntity> confirm(@Url String url, @FieldMap Map<String, String> params);
+    Observable<CommonEntity> modifyAddress(@Url String url, @FieldMap Map<String, String> params);
 }

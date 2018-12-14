@@ -88,6 +88,10 @@ public class URLFinal {
      */
     public static final String ADD_ADDRESS = "mobile/PersonalCenter/addReceiverAddress";
     /**
+     * 修改地址
+     */
+    public static final String MODIFY_ADDRESS = "mobile/PersonalCenter/updateReceiverAddress";
+    /**
      * 查询条件满足的优惠卷
      */
     public static final String GET_COUPON = "mobile/shoppingTrolley/lookCoupon";
@@ -128,6 +132,10 @@ public class URLFinal {
      */
     public static final String ORDER_DETAIL = "modele/orderForm/selectOrderFormId";
     /**
+     * 确认收货
+     */
+    public static final String CONFIRM_GOODS = "modele/orderForm/affirmReceive";
+    /**
      * 增加时候查询订单评价订单的信息
      */
     public static final String GET_COMMENT_INFO = "modele/orderForm/selectOrderForm";
@@ -159,4 +167,12 @@ public class URLFinal {
      * 微信登录 - 绑定已有手机号
      */
     public static final String BINDING_OLD_PHONE = "mobile/bindingWX";
+    /**
+     * 查看收货地址
+     */
+    public static final String GET_ADDRESS_LIST = "mobile/PersonalCenter/lookReceiverAddress";
+    /**
+     * 设为默认
+     */
+    public static final String SET_ADDRESS_DEFAULT = "mobile/PersonalCenter/defaultSite";
 }

@@ -1,39 +1,39 @@
-package com.harry.ebangbang.function.order_detail;
+package com.harry.ebangbang.function.address_management;
 
 import com.blankj.utilcode.util.ToastUtils;
 import com.harry.ebangbang.app_final.DisposableFinal;
 import com.harry.ebangbang.base.presenter.BasePresenter;
+import com.harry.ebangbang.network.entity.AddressManagementEntity;
 import com.harry.ebangbang.network.entity.CommonEntity;
-import com.harry.ebangbang.network.entity.OrderDetailEntity;
 import com.harry.ebangbang.rx.DisposableManager;
 
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 
 /**
- * Created by Harry on 2018/12/12.
+ * Created by Harry on 2018/12/14.
  */
-public class OrderDetailPresenter extends BasePresenter<OrderDetailActivity> {
+public class AddressManagementPresenter extends BasePresenter<AddressManagementActivity> {
 
-    private final OrderDetailModel model;
+    private final AddressManagementModel model;
 
-    public OrderDetailPresenter() {
-        model = new OrderDetailModel();
+    public AddressManagementPresenter() {
+        model = new AddressManagementModel();
     }
 
-    public void getOrderDetail(String orderFormId) {
-        model.getOrderDetail(orderFormId, new Observer<OrderDetailEntity>() {
+    public void getAddressList() {
+        model.getAddressList(new Observer<AddressManagementEntity>() {
             @Override
             public void onSubscribe(Disposable d) {
-                DisposableManager.get().add(DisposableFinal.ORDER_DETAIL_ACTIVITY_GET_ORDER_DETAIL, d);
+                DisposableManager.get().add(DisposableFinal.ADDRESS_MANAGEMENT_ACTIVITY_GET_ADDRESS_LIST, d);
             }
 
             @Override
-            public void onNext(OrderDetailEntity orderDetailEntity) {
-                if (orderDetailEntity.code == 1) {
-                    view.getOrderDetail(orderDetailEntity.data);
+            public void onNext(AddressManagementEntity addressManagementEntity) {
+                if (addressManagementEntity.code == 1) {
+                    view.getAddressList(addressManagementEntity.data);
                 } else {
-                    ToastUtils.showShort(orderDetailEntity.msg);
+                    ToastUtils.showShort(addressManagementEntity.msg);
                 }
             }
 
@@ -49,18 +49,17 @@ public class OrderDetailPresenter extends BasePresenter<OrderDetailActivity> {
         });
     }
 
-    public void confirm(String orderFormId) {
-        model.confirm(orderFormId, new Observer<CommonEntity>() {
+    public void setDefault(String addressId) {
+        model.setDefault(addressId, new Observer<CommonEntity>() {
             @Override
             public void onSubscribe(Disposable d) {
-                DisposableManager.get().add(DisposableFinal.ORDER_DETAIL_ACTIVITY_CONFIRM, d);
+                DisposableManager.get().add(DisposableFinal.ADDRESS_MANAGEMENT_ACTIVITY_SET_DEFAULT, d);
             }
 
             @Override
             public void onNext(CommonEntity commonEntity) {
                 if (commonEntity.code == 1) {
-                    ToastUtils.showShort("收货成功");
-                    view.finish();
+                    getAddressList();
                 } else {
                     ToastUtils.showShort(commonEntity.msg);
                 }

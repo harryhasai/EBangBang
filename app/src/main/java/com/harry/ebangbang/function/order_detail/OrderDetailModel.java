@@ -2,6 +2,7 @@ package com.harry.ebangbang.function.order_detail;
 
 import com.harry.ebangbang.app_final.URLFinal;
 import com.harry.ebangbang.base.model.BaseModel;
+import com.harry.ebangbang.network.entity.CommonEntity;
 import com.harry.ebangbang.network.entity.OrderDetailEntity;
 import com.harry.ebangbang.network.service.OrderDetailService;
 import com.harry.ebangbang.utils.RetrofitHelper;
@@ -32,6 +33,17 @@ public class OrderDetailModel extends BaseModel {
         params.put("orderFormId", orderFormId);
 
         service.getOrderDetail(URLFinal.ORDER_DETAIL, params)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(observer);
+    }
+
+    public void confirm(String orderFormId, Observer<CommonEntity> observer) {
+        Map<String, String> params = new HashMap<>();
+//        params.put("userId", SPUtils.getString(UserInfo.ID.name(), ""));
+        params.put("orederId", orderFormId);
+
+        service.confirm(URLFinal.CONFIRM_GOODS, params)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(observer);

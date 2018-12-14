@@ -71,6 +71,7 @@ public class HomeFragment extends BaseFragment<HomePresenter> {
                     //定位成功, 发送经纬度到服务器
                     mPresenter.currentPosition(aMapLocation.getLongitude(), aMapLocation.getLatitude());
                 } else {
+                    LocationUtil.getInstance().stopLocation();
                     LocationUtil.getInstance().startLocation();
                 }
             }

@@ -43,6 +43,7 @@
         <meta-data
             android:name="com.amap.api.v2.apikey"
             android:value="66b1ebbd50ad1978650ac1019ac42349" />
+        <service android:name="com.amap.api.location.APSService" /><!--定位需要的服务-->
 
         <activity
             android:name=".function.splash.SplashActivity"
@@ -83,6 +84,8 @@
         <activity android:name=".function.order_manage.order_status.OrderStatusActivity" />
         <activity android:name=".function.user_info.UserInfoActivity" />
         <activity android:name=".function.login.binding_phone.BindingPhoneActivity" />
+        <activity android:name=".function.address_management.AddressManagementActivity" />
+        <activity android:name=".function.modify_address.ModifyAddressActivity" />
 
     </application>
 

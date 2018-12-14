@@ -18,6 +18,7 @@ import com.amap.api.maps.model.BitmapDescriptorFactory;
 import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.MarkerOptions;
 import com.blankj.utilcode.util.ConvertUtils;
+import com.blankj.utilcode.util.ToastUtils;
 import com.harry.ebangbang.R;
 import com.harry.ebangbang.app_final.DisposableFinal;
 import com.harry.ebangbang.app_final.UserInfo;
@@ -112,6 +113,7 @@ public class OrderDetailActivity extends BaseActivity<OrderDetailPresenter> {
     protected ArrayList<Object> cancelNetWork() {
         ArrayList<Object> tags = new ArrayList<>();
         tags.add(DisposableFinal.ORDER_DETAIL_ACTIVITY_GET_ORDER_DETAIL);
+        tags.add(DisposableFinal.ORDER_DETAIL_ACTIVITY_CONFIRM);
         return tags;
     }
 
@@ -292,14 +294,17 @@ public class OrderDetailActivity extends BaseActivity<OrderDetailPresenter> {
                             break;
                         case 2: //待配送
                             //确认收货
+                            mPresenter.confirm(String.valueOf(mDataBean.orderFormId));
                             break;
                         case 4://待收货
                             //确认收货
+                            mPresenter.confirm(String.valueOf(mDataBean.orderFormId));
                             break;
                         case 5://订单已完成未评价
                             break;
                         case 6://退返货
                             //去退货
+                            ToastUtils.showShort("暂无退货功能, 敬请期待");
                             break;
                         case 7://完成并已评价
                             finish();
