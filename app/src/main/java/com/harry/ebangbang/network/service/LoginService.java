@@ -2,6 +2,7 @@ package com.harry.ebangbang.network.service;
 
 
 import com.harry.ebangbang.network.entity.LoginEntity;
+import com.harry.ebangbang.network.entity.WxLoginEntity;
 
 import java.util.Map;
 
@@ -19,4 +20,8 @@ public interface LoginService {
     @FormUrlEncoded
     @POST
     Observable<LoginEntity> login(@Url String url, @FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
+    @POST
+    Observable<WxLoginEntity> wxLogin(@Url String url, @FieldMap Map<String, String> params);
 }

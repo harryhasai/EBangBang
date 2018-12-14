@@ -7,10 +7,13 @@ import android.util.Log;
 
 import com.blankj.utilcode.util.ToastUtils;
 import com.harry.ebangbang.application.EBangBangApplication;
+import com.harry.ebangbang.event.WXLoginEvent;
 import com.tencent.mm.opensdk.modelbase.BaseReq;
 import com.tencent.mm.opensdk.modelbase.BaseResp;
 import com.tencent.mm.opensdk.modelmsg.SendAuth;
 import com.tencent.mm.opensdk.openapi.IWXAPIEventHandler;
+
+import org.greenrobot.eventbus.EventBus;
 
 /**
  * Created by Harry on 2018/11/6.
@@ -66,14 +69,15 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
                     //用户换取access_token的code，仅在ErrCode为0时有效
                     String code = ((SendAuth.Resp) baseResp).code;
                     Log.i(TAG, "code:------>" + code);
-                    ToastUtils.showShort("code是: " + code);
+//                    ToastUtils.showShort("code是: " + code);
                     //这里拿到了这个code，去做2次网络请求获取access_token和用户个人信息
-
+                    EventBus.getDefault().postSticky(new WXLoginEvent(code));
 
                 } else if (type == RETURN_MSG_TYPE_SHARE) {
                     ToastUtils.showShort("微信分享成功");
                 }
                 break;
         }
+        finish();
     }
 }

@@ -1,6 +1,5 @@
 package com.harry.ebangbang.function.forget_password;
 
-import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.text.TextUtils;
 import android.view.View;

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:ignore="HardcodedText">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="15dp"
+        android:text="绑定手机号"
+        android:textColor="@color/app_status_bar_color"
+        android:textSize="16sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#8B3E2F" />
+
+    <TextView
+        android:id="@+id/tv_old"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/layer_list_bottom_line1"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="已有手机号"
+        android:textColor="@color/black1"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/tv_new"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/layer_list_bottom_line1"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="新手机号"
+        android:textColor="@color/black1"
+        android:textSize="14sp" />
+</LinearLayout>

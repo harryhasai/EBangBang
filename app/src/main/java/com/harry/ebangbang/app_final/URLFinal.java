@@ -17,6 +17,7 @@ public class URLFinal {
      * 登录
      */
     public static final String LOGIN = "mobile/Login";
+    public static final String WX_LOGIN = "model/wx/wxLogin";
     /**
      * 验证验证码
      */
@@ -150,4 +151,12 @@ public class URLFinal {
      * 修改个人信息
      */
     public static final String SAVE_USER_INFO = "mobile/PersonalCenter/updateDetails";
+    /**
+     * 微信登录 - 绑定新手机号
+     */
+    public static final String BINDING_NEW_PHONE = "mobile/newBindingWX";
+    /**
+     * 微信登录 - 绑定已有手机号
+     */
+    public static final String BINDING_OLD_PHONE = "mobile/bindingWX";
 }

@@ -13,13 +13,22 @@ import android.widget.TextView;
 import com.blankj.utilcode.util.ToastUtils;
 import com.harry.ebangbang.R;
 import com.harry.ebangbang.app_final.DisposableFinal;
+import com.harry.ebangbang.app_final.UserInfo;
 import com.harry.ebangbang.application.EBangBangApplication;
 import com.harry.ebangbang.base.BaseActivity;
+import com.harry.ebangbang.event.WXLoginEvent;
 import com.harry.ebangbang.function.forget_password.ForgetPasswordActivity;
+import com.harry.ebangbang.function.login.binding_phone.BindingPhoneActivity;
+import com.harry.ebangbang.function.main.MainActivity;
 import com.harry.ebangbang.function.register.RegisterActivity;
-import com.harry.ebangbang.utils.NotificationUtil;
+import com.harry.ebangbang.network.entity.WxLoginEntity;
 import com.harry.ebangbang.utils.RxPermissionsUtils;
+import com.harry.ebangbang.utils.SPUtils;
 import com.tencent.mm.opensdk.modelmsg.SendAuth;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 
@@ -63,7 +72,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
             }
         }
         ButterKnife.bind(this);
-
+        EventBus.getDefault().register(this);
     }
 
     @Override
@@ -146,4 +155,78 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
         EBangBangApplication.getAppContext().mWXAPI.sendReq(req);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().removeStickyEvent(new WXLoginEvent(null));
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
+    public void loginEvent(WXLoginEvent wxLoginEvent) {
+        String wxCode = wxLoginEvent.getWxCode();
+        mPresenter.wxLogin(wxCode);
+    }
+
+    /**
+     * @param wxLoginEntity 微信登录成功返回
+     */
+    public void wxLoginResult(final WxLoginEntity wxLoginEntity) {
+        SPUtils.putString(UserInfo.HEADER_URL.name(), wxLoginEntity.headAddress);
+        SPUtils.putString(UserInfo.NICK_NAME.name(), wxLoginEntity.nickname);
+
+        if (wxLoginEntity.Isbinding == 0) {
+            //为绑定手机号
+            View view = View.inflate(this, R.layout.dialog_select_login_mode, null);
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            final AlertDialog dialog = builder.create();
+            dialog.setView(view);
+            dialog.setCancelable(true);
+            dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                @Override
+                public void onCancel(DialogInterface dialog) {
+                    ToastUtils.showShort("您取消了绑定手机, 暂无法使用微信登录功能");
+                }
+            });
+            dialog.show();
+            TextView tvOld = view.findViewById(R.id.tv_old);
+            TextView tvNew = view.findViewById(R.id.tv_new);
+            tvOld.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(LoginActivity.this, BindingPhoneActivity.class);
+                    intent.putExtra("mode", 1);
+                    intent.putExtra("openId", wxLoginEntity.openid);
+                    intent.putExtra("nickName", wxLoginEntity.nickname);
+                    intent.putExtra("headAddress", wxLoginEntity.headAddress);
+                    startActivity(intent);
+                    dialog.dismiss();
+                }
+            });
+            tvNew.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(LoginActivity.this, BindingPhoneActivity.class);
+                    intent.putExtra("mode", 2);
+                    intent.putExtra("openId", wxLoginEntity.openid);
+                    intent.putExtra("nickName", wxLoginEntity.nickname);
+                    intent.putExtra("headAddress", wxLoginEntity.headAddress);
+                    startActivity(intent);
+                    dialog.dismiss();
+                }
+            });
+        } else {
+            //已绑定手机号 直接登录
+            SPUtils.putString(UserInfo.ID.name(), String.valueOf(wxLoginEntity.data.id));
+            SPUtils.putString(UserInfo.LOGIN_NAME.name(), wxLoginEntity.data.loginName);
+            SPUtils.putString(UserInfo.PHONE.name(), wxLoginEntity.data.phone);
+            SPUtils.putString(UserInfo.TYPE.name(), wxLoginEntity.data.type);
+            SPUtils.putString(UserInfo.NICK_NAME.name(), wxLoginEntity.data.nickname);
+            SPUtils.putString(UserInfo.HEADER_BASE.name(), wxLoginEntity.headPortraitLink);
+            SPUtils.putString(UserInfo.HEADER_URL.name(), wxLoginEntity.data.headAddress);
+            startActivity(new Intent(this, MainActivity.class));
+            SPUtils.putBoolean(UserInfo.IS_LOGIN.name(), true);
+            finish();
+        }
+    }
 }

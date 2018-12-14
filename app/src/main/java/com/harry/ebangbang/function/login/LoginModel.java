@@ -3,6 +3,7 @@ package com.harry.ebangbang.function.login;
 import com.harry.ebangbang.app_final.URLFinal;
 import com.harry.ebangbang.base.model.BaseModel;
 import com.harry.ebangbang.network.entity.LoginEntity;
+import com.harry.ebangbang.network.entity.WxLoginEntity;
 import com.harry.ebangbang.network.service.LoginService;
 import com.harry.ebangbang.utils.RetrofitHelper;
 
@@ -33,6 +34,17 @@ public class LoginModel extends BaseModel {
         params.put("passWord", password);
 
         service.login(URLFinal.LOGIN, params)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(observer);
+    }
+
+    public void wxLogin(String code, Observer<WxLoginEntity> observer) {
+        Map<String, String> params = new HashMap<>();
+
+        params.put("code", code);
+
+        service.wxLogin(URLFinal.WX_LOGIN, params)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(observer);

@@ -2,6 +2,7 @@ package com.harry.ebangbang.function.login;
 
 import android.content.Intent;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.blankj.utilcode.util.ToastUtils;
 import com.harry.ebangbang.app_final.DisposableFinal;
@@ -9,6 +10,7 @@ import com.harry.ebangbang.app_final.UserInfo;
 import com.harry.ebangbang.base.presenter.BasePresenter;
 import com.harry.ebangbang.function.main.MainActivity;
 import com.harry.ebangbang.network.entity.LoginEntity;
+import com.harry.ebangbang.network.entity.WxLoginEntity;
 import com.harry.ebangbang.rx.DisposableManager;
 import com.harry.ebangbang.utils.SPUtils;
 
@@ -24,6 +26,34 @@ public class LoginPresenter extends BasePresenter<LoginActivity> {
 
     public LoginPresenter() {
         model = new LoginModel();
+    }
+
+    public void wxLogin(String code) {
+        model.wxLogin(code, new Observer<WxLoginEntity>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                DisposableManager.get().add(DisposableFinal.LOGIN_ACTIVITY_WX_LOGIN, d);
+            }
+
+            @Override
+            public void onNext(WxLoginEntity wxLoginEntity) {
+                if (wxLoginEntity.code == 1) {
+                    view.wxLoginResult(wxLoginEntity);
+                } else {
+                    ToastUtils.showShort(wxLoginEntity.msg);
+                }
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                ToastUtils.showShort("网络连接错误");
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        });
     }
 
     public void login(String userName, String password) {
