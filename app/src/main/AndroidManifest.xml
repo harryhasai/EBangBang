@@ -86,6 +86,13 @@
         <activity android:name=".function.login.binding_phone.BindingPhoneActivity" />
         <activity android:name=".function.address_management.AddressManagementActivity" />
         <activity android:name=".function.modify_address.ModifyAddressActivity" />
+        <activity android:name=".function.errand_service.ErrandServiceActivity" />
+        <activity android:name=".function.errand_service.select_address.SelectAddressActivity" />
+        <activity
+            android:name=".function.errand_list.ErrandListActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize" />
+        <activity android:name=".function.errand_list.going_on.RiderLocationActivity" />
+        <activity android:name=".function.my_coupon.MyCouponActivity" />
 
     </application>
 

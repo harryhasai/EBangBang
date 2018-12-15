@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="8dp"
+    android:layout_marginEnd="8dp"
+    android:layout_marginBottom="10dp"
+    android:background="@color/white"
+    android:elevation="3dp"
+    android:padding="10dp"
+    tools:ignore="HardcodedText">
+
+    <TextView
+        android:id="@+id/tv_order_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="订单号"
+        android:textColor="@color/black"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/tv_send_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_order_number"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="13dp"
+        android:layout_toStartOf="@id/tv_rider_location"
+        android:text="发件地址: 中州国际"
+        android:textColor="@color/black1"
+        android:textSize="13sp" />
+
+    <TextView
+        android:id="@+id/tv_receive_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_send_address"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="9dp"
+        android:layout_toStartOf="@id/tv_rider_location"
+        android:text="收件地址: 中州国际"
+        android:textColor="@color/black1"
+        android:textSize="13sp" />
+
+    <TextView
+        android:id="@+id/tv_remark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_receive_address"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="9dp"
+        android:layout_toStartOf="@id/tv_rider_location"
+        android:text="备注信息: 速度快点"
+        android:textColor="@color/black1"
+        android:textSize="13sp" />
+
+    <TextView
+        android:id="@+id/tv_rider_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:drawableStart="@drawable/ic_location_bg"
+        android:paddingStart="15dp"
+        android:paddingEnd="5dp"
+        android:text="骑手位置"
+        android:textColor="@color/black2"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/tv_call_rider"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/tv_order_number"
+        android:layout_alignParentEnd="true"
+        android:background="@color/app_status_bar_color"
+        android:paddingStart="15dp"
+        android:paddingTop="5dp"
+        android:paddingEnd="15dp"
+        android:paddingBottom="5dp"
+        android:text="联系骑手"
+        android:textColor="@color/white"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/tv_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/tv_remark"
+        android:layout_alignParentEnd="true"
+        android:text="¥16"
+        android:textColor="@color/red"
+        android:textSize="13sp" />
+</RelativeLayout>

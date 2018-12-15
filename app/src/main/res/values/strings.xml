@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">EBangBang</string>
+
+    <string-array name="errand_name">
+        <!--<item>新任务</item>-->
+        <item>进行中</item>
+        <item>已完成</item>
+    </string-array>
 </resources>

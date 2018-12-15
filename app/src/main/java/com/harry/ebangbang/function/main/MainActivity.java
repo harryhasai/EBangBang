@@ -48,6 +48,13 @@ public class MainActivity extends BaseActivity {
         bottomNavigationBar.selectTab(0);
     }
 
+    /**
+     * 切换首页
+     */
+    public void swichHomeFragment() {
+        bottomNavigationBar.selectTab(0);
+    }
+
     @Override
     public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
         // super.onSaveInstanceState(outState, outPersistentState);

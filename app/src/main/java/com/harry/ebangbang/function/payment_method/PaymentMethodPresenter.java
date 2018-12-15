@@ -21,8 +21,8 @@ public class PaymentMethodPresenter extends BasePresenter<PaymentMethodActivity>
         model = new PaymentMethodModel();
     }
 
-    public void wxPay(String orderFormId) {
-        model.wxPay(orderFormId, new Observer<WxPayEntity>() {
+    public void wxPay(String orderFormId, boolean isErrand) {
+        model.wxPay(orderFormId, isErrand, new Observer<WxPayEntity>() {
             @Override
             public void onSubscribe(Disposable d) {
                 DisposableManager.get().add(DisposableFinal.PAYMENT_METHOD_ACTIVITY_WX_PAY, d);
@@ -47,8 +47,8 @@ public class PaymentMethodPresenter extends BasePresenter<PaymentMethodActivity>
         });
     }
 
-    public void aliPay(String orderFormId) {
-        model.aliPay(orderFormId, new Observer<AliPayEntity>() {
+    public void aliPay(String orderFormId, boolean isErrand) {
+        model.aliPay(orderFormId, isErrand, new Observer<AliPayEntity>() {
             @Override
             public void onSubscribe(Disposable d) {
                 DisposableManager.get().add(DisposableFinal.PAYMENT_METHOD_ACTIVITY_ALI_PAY, d);

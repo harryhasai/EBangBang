@@ -1,6 +1,7 @@
 package com.harry.ebangbang.function.home;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -8,11 +9,11 @@ import android.view.View;
 
 import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationListener;
-import com.blankj.utilcode.util.ToastUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.harry.ebangbang.R;
 import com.harry.ebangbang.app_final.DisposableFinal;
 import com.harry.ebangbang.base.BaseFragment;
+import com.harry.ebangbang.function.errand_service.ErrandServiceActivity;
 import com.harry.ebangbang.function.search.SearchActivity;
 import com.harry.ebangbang.network.entity.HomeBannerEntity;
 import com.harry.ebangbang.network.entity.HomeEntity;
@@ -72,7 +73,12 @@ public class HomeFragment extends BaseFragment<HomePresenter> {
                     mPresenter.currentPosition(aMapLocation.getLongitude(), aMapLocation.getLatitude());
                 } else {
                     LocationUtil.getInstance().stopLocation();
-                    LocationUtil.getInstance().startLocation();
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            LocationUtil.getInstance().startLocation();
+                        }
+                    }, 1000);
                 }
             }
         });
@@ -105,6 +111,10 @@ public class HomeFragment extends BaseFragment<HomePresenter> {
                     case R.id.et_search:
                         startActivity(new Intent(mActivity, SearchActivity.class));
                         break;
+                    case R.id.tv_center_service:
+                        startActivity(new Intent(mActivity, ErrandServiceActivity.class));
+                        break;
+
                 }
             }
         });

@@ -53,6 +53,7 @@ public class PaymentMethodActivity extends BaseActivity<PaymentMethodPresenter> 
     @BindView(R.id.btn_commit)
     Button btnCommit;
     private String orderFormId;
+    private boolean isErrand;
 
     @Override
     protected int setupView() {
@@ -67,6 +68,7 @@ public class PaymentMethodActivity extends BaseActivity<PaymentMethodPresenter> 
 
         String orderNumber = getIntent().getStringExtra("orderNumber");
         String money = getIntent().getStringExtra("money");
+        isErrand = getIntent().getBooleanExtra("isErrand", false);
         orderFormId = getIntent().getStringExtra("orderFormId");
 
         tvTitle.setText("付款");
@@ -118,9 +120,9 @@ public class PaymentMethodActivity extends BaseActivity<PaymentMethodPresenter> 
                 break;
             case R.id.btn_commit:
                 if (cbWx.isChecked()) {
-                    mPresenter.wxPay(orderFormId);
+                    mPresenter.wxPay(orderFormId, isErrand);
                 } else if (cbAl.isChecked()) {
-                    mPresenter.aliPay(orderFormId);
+                    mPresenter.aliPay(orderFormId, isErrand);
                 }
                 break;
         }

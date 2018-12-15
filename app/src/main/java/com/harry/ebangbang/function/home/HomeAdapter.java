@@ -54,6 +54,7 @@ public class HomeAdapter extends BaseMultiItemQuickAdapter<HomeMultiItem, BaseVi
                 break;
             case HomeMultiItem.CENTER://中部banner
                 setupBanner(helper);
+                helper.addOnClickListener(R.id.tv_center_service);
                 break;
             case HomeMultiItem.BOTTOM://底部列表
                 recyclerView = helper.getView(R.id.recycler_view);

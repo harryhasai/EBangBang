@@ -175,4 +175,17 @@ public class URLFinal {
      * 设为默认
      */
     public static final String SET_ADDRESS_DEFAULT = "mobile/PersonalCenter/defaultSite";
+    /**
+     * 跑腿下单
+     */
+    public static final String ERRAND_SERVICE = "mobile/errand/addErrand";
+    /**
+     * 计算跑腿金额
+     */
+    public static final String COUNT_MONEY = "mobile/errand/countMoney";
+    /**
+     * 查看跑腿订单
+     */
+    public static final String ERRAND_MONEY = "mobile/errand/selectUserList";
+    public static final String MY_COUPON = "mobile/PersonalCenter/selectMyCoupon";
 }

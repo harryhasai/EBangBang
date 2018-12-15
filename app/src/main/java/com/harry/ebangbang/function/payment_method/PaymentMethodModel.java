@@ -27,10 +27,14 @@ public class PaymentMethodModel extends BaseModel {
         service = retrofit.create(PaymentMethodService.class);
     }
 
-    public void wxPay(String orderFormId, Observer<WxPayEntity> observer) {
+    public void wxPay(String orderFormId, boolean isErrand, Observer<WxPayEntity> observer) {
         Map<String, String> params = new HashMap<>();
         params.put("orderFormId", orderFormId);//订单id
-        params.put("attach", "1");//1 为商品下单 2 为跑腿下单
+        if (isErrand) {
+            params.put("attach", "2");//1 为商品下单 2 为跑腿下单
+        } else {
+            params.put("attach", "1");//1 为商品下单 2 为跑腿下单
+        }
 
         service.wxPay(URLFinal.WX_PAY, params)
                 .subscribeOn(Schedulers.io())
@@ -38,10 +42,14 @@ public class PaymentMethodModel extends BaseModel {
                 .subscribe(observer);
     }
 
-    public void aliPay(String orderFormId, Observer<AliPayEntity> observer) {
+    public void aliPay(String orderFormId, boolean isErrand, Observer<AliPayEntity> observer) {
         Map<String, String> params = new HashMap<>();
         params.put("orderformId", orderFormId);//订单id
-        params.put("attach", "1");//1 为商品下单 2 为跑腿下单
+        if (isErrand) {
+            params.put("attach", "2");//1 为商品下单 2 为跑腿下单
+        } else {
+            params.put("attach", "1");//1 为商品下单 2 为跑腿下单
+        }
 
         service.aliPay(URLFinal.ALI_PAY, params)
                 .subscribeOn(Schedulers.io())

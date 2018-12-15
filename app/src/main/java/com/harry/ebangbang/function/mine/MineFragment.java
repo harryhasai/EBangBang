@@ -18,6 +18,7 @@ import com.harry.ebangbang.app_final.UserInfo;
 import com.harry.ebangbang.base.BaseFragment;
 import com.harry.ebangbang.function.address_management.AddressManagementActivity;
 import com.harry.ebangbang.function.login.LoginActivity;
+import com.harry.ebangbang.function.my_coupon.MyCouponActivity;
 import com.harry.ebangbang.function.order_manage.OrderManageActivity;
 import com.harry.ebangbang.function.user_info.UserInfoActivity;
 import com.harry.ebangbang.network.entity.MineEntity;
@@ -119,7 +120,7 @@ public class MineFragment extends BaseFragment<MinePresenter> {
     }
 
     @OnClick({R.id.iv_user_header, R.id.tv_sign_out, R.id.fl_order_manager, R.id.fl_user_info,
-            R.id.fl_customer_service, R.id.fl_address})
+            R.id.fl_customer_service, R.id.fl_address, R.id.tv_cash_coupon})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_user_header://修改头像
@@ -146,6 +147,9 @@ public class MineFragment extends BaseFragment<MinePresenter> {
                 break;
             case R.id.fl_address://收货地址管理
                 startActivity(new Intent(mActivity, AddressManagementActivity.class));
+                break;
+            case R.id.tv_cash_coupon://代金券
+                startActivity(new Intent(mActivity, MyCouponActivity.class));
                 break;
         }
     }
