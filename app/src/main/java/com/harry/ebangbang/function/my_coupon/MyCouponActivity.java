@@ -44,6 +44,7 @@ public class MyCouponActivity extends BaseActivity<MyCouponPresenter> {
 
         tvTitle.setText("我的代金券");
 
+
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new MyCouponAdapter(R.layout.item_my_coupon);
         recyclerView.setAdapter(adapter);
