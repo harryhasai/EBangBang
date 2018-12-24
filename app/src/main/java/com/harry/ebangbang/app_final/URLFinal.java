@@ -176,6 +176,10 @@ public class URLFinal {
      */
     public static final String SET_ADDRESS_DEFAULT = "mobile/PersonalCenter/defaultSite";
     /**
+     * 删除地址
+     */
+    public static final String DELETE_ADDRESS = "mobile/PersonalCenter/deleteReceiverAddress";
+    /**
      * 跑腿下单
      */
     public static final String ERRAND_SERVICE = "mobile/errand/addErrand";

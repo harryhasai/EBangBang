@@ -48,4 +48,14 @@ public class AddressManagementModel extends BaseModel {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(observer);
     }
+
+    public void delete(String addressId, Observer<CommonEntity> observer) {
+        Map<String, String> params = new HashMap<>();
+        params.put("id", addressId);
+
+        service.setDefault(URLFinal.DELETE_ADDRESS, params)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(observer);
+    }
 }

@@ -60,6 +60,8 @@ public class GoodsDetailActivity extends BaseActivity<GoodsDetailPresenter> {
     private String goodsCount;
     private int count = 0;
     private GoodsDetailCommentAdapter adapter;
+    private String goodsName;
+    private double goodsPrice;
 
     @Override
     protected int setupView() {
@@ -130,12 +132,12 @@ public class GoodsDetailActivity extends BaseActivity<GoodsDetailPresenter> {
                 tvCount.setText(String.valueOf(count));
                 break;
             case R.id.btn_complete:
-                if (count != 0) {
-                    Intent data = new Intent();
-                    data.putExtra("goodsId", goodsId);
-                    data.putExtra("goodsCount", count);
-                    setResult(ConstantFinal.COMMON_RESULT_CODE, data);
-                }
+                Intent data = new Intent();
+                data.putExtra("goodsId", goodsId);
+                data.putExtra("goodsCount", count);
+                data.putExtra("goodsName", goodsName);
+                data.putExtra("goodsPrice", goodsPrice);
+                setResult(ConstantFinal.COMMON_RESULT_CODE, data);
                 finish();
                 break;
         }
@@ -147,9 +149,11 @@ public class GoodsDetailActivity extends BaseActivity<GoodsDetailPresenter> {
                 .error(R.drawable.ic_error)
                 .placeholder(R.drawable.ic_place_holder)
                 .into(ivGoodsImg);
-        tvGoodsName.setText(bean.goodsName);
+        goodsName = bean.goodsName;
+        tvGoodsName.setText(goodsName);
         tvGoodsSalesVolume.setText("月售" + bean.salesVolume);
-        tvGoodsPrice.setText("¥" + bean.price);
+        goodsPrice = bean.price;
+        tvGoodsPrice.setText("¥" + goodsPrice);
         tvGoodsDesc.setText(bean.details);
 
         List<GoodsDetailEntity.DataBean.CommentsBean> comments = bean.comments;

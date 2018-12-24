@@ -9,19 +9,19 @@
     android:orientation="horizontal"
     tools:ignore="HardcodedText">
 
-    <com.ruffian.library.RTextView
-        android:id="@+id/tv_weather"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:gravity="center_horizontal"
-        android:text="17°"
-        android:textColor="@color/black1"
-        android:textSize="10sp"
-        rtv:icon_direction="top"
-        rtv:icon_height="20dp"
-        rtv:icon_src_normal="@drawable/ic_weather"
-        rtv:icon_width="22dp" />
+    <!--<com.ruffian.library.RTextView-->
+    <!--android:id="@+id/tv_weather"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginStart="20dp"-->
+    <!--android:gravity="center_horizontal"-->
+    <!--android:text="17°"-->
+    <!--android:textColor="@color/black1"-->
+    <!--android:textSize="10sp"-->
+    <!--rtv:icon_direction="top"-->
+    <!--rtv:icon_height="20dp"-->
+    <!--rtv:icon_src_normal="@drawable/ic_weather"-->
+    <!--rtv:icon_width="22dp" />-->
 
     <com.ruffian.library.RTextView
         android:id="@+id/tv_city"
@@ -30,7 +30,7 @@
         android:layout_marginStart="20dp"
         android:drawablePadding="5dp"
         android:gravity="center_horizontal"
-        android:text="洛阳"
+        android:text="切换中"
         android:textColor="@color/black1"
         android:textSize="16sp"
         rtv:icon_direction="right"

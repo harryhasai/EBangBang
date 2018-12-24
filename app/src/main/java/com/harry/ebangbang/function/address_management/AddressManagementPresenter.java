@@ -76,4 +76,32 @@ public class AddressManagementPresenter extends BasePresenter<AddressManagementA
             }
         });
     }
+
+    public void delete(String addressId) {
+        model.delete(addressId, new Observer<CommonEntity>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                DisposableManager.get().add(DisposableFinal.ADDRESS_MANAGEMENT_ACTIVITY_SET_DEFAULT, d);
+            }
+
+            @Override
+            public void onNext(CommonEntity commonEntity) {
+                if (commonEntity.code == 1) {
+                    getAddressList();
+                } else {
+                    ToastUtils.showShort(commonEntity.msg);
+                }
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                ToastUtils.showShort("网络连接错误");
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        });
+    }
 }

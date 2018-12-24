@@ -25,4 +25,8 @@ public interface AddressManagementService {
     @POST
     Observable<CommonEntity> setDefault(@Url String url, @FieldMap Map<String, String> params);
 
+    @FormUrlEncoded
+    @POST
+    Observable<CommonEntity> delete(@Url String url, @FieldMap Map<String, String> params);
+
 }

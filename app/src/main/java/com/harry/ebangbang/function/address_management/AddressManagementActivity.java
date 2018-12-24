@@ -1,5 +1,7 @@
 package com.harry.ebangbang.function.address_management;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -54,8 +56,22 @@ public class AddressManagementActivity extends BaseActivity<AddressManagementPre
         adapter.setOnItemLongClickListener(new BaseQuickAdapter.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(BaseQuickAdapter adapter, View view, int position) {
-                AddressManagementEntity.DataBean bean = (AddressManagementEntity.DataBean) adapter.getData().get(position);
-                mPresenter.setDefault(String.valueOf(bean.id));
+                final AddressManagementEntity.DataBean bean = (AddressManagementEntity.DataBean) adapter.getData().get(position);
+                AlertDialog.Builder builder = new AlertDialog.Builder(AddressManagementActivity.this);
+                builder.setMessage("请选择您要做的操作").setCancelable(true);
+                builder.setNegativeButton("删除", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        mPresenter.delete(String.valueOf(bean.id));
+                        dialog.dismiss();
+                    }
+                }).setPositiveButton("设为默认", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        mPresenter.setDefault(String.valueOf(bean.id));
+                        dialog.dismiss();
+                    }
+                }).show();
                 return true;
             }
         });

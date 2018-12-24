@@ -51,8 +51,8 @@ public class MainActivity extends BaseActivity {
     /**
      * 切换首页
      */
-    public void swichHomeFragment() {
-        bottomNavigationBar.selectTab(0);
+    public void swichTab(int position) {
+        bottomNavigationBar.selectTab(position);
     }
 
     @Override

@@ -6,7 +6,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -34,7 +33,6 @@ import com.harry.ebangbang.function.shopping_cart.JsonFormatBean;
 import com.harry.ebangbang.function.submit_order.SubmitOrderActivity;
 import com.harry.ebangbang.network.entity.ShopDetailCategoryEntity;
 import com.harry.ebangbang.network.entity.ShopDetailChildEntity;
-import com.harry.ebangbang.network.entity.ShoppingCartEntity;
 import com.harry.ebangbang.utils.SPUtils;
 import com.ruffian.library.RTextView;
 import com.squareup.picasso.Picasso;
@@ -462,6 +460,8 @@ public class ShopDetailActivity extends BaseActivity<ShopDetailPresenter> {
             if (requestCode == ConstantFinal.COMMON_REQUEST_CODE && resultCode == ConstantFinal.COMMON_RESULT_CODE) {
                 String goodsId = data.getStringExtra("goodsId");
                 int goodsCount = data.getIntExtra("goodsCount", 0);
+                String goodsName = data.getStringExtra("goodsName");
+                double goodsPrice = data.getDoubleExtra("goodsPrice", 0);
 
                 for (int i = 0; i < childList.size(); i++) {
                     ShopDetailChildEntity.DataBean.GoodsBean goodsBean = childList.get(i);
@@ -471,10 +471,29 @@ public class ShopDetailActivity extends BaseActivity<ShopDetailPresenter> {
                     }
                 }
 
+                ComplexPopupEntity e = new ComplexPopupEntity(Integer.valueOf(goodsId), goodsCount, goodsName, goodsPrice);
+                if (popupList.size() == 0 && goodsCount > 0) {
+                    popupList.add(e);
+                } else if (!popupList.contains(e)) {
+                    popupList.add(e);
+                }
+
                 for (int i = 0; i < popupList.size(); i++) {
                     ComplexPopupEntity popupEntity = popupList.get(i);
                     if (popupEntity.id == Integer.valueOf(goodsId)) {
-                        popupEntity.count = goodsCount;
+                        if (goodsCount == 0) {
+                            popupList.remove(popupEntity);
+                        } else {
+                            if (popupList.contains(popupEntity)) {
+                                popupEntity.count = goodsCount;
+                            }
+                        }
+                        if (popupList.size() == 0) {
+                            tvShoppingCartNumber.setVisibility(View.GONE);
+                        } else {
+                            tvShoppingCartNumber.setVisibility(View.VISIBLE);
+                            tvShoppingCartNumber.setText(String.valueOf(popupList.size()));
+                        }
                         popupAdapter.notifyDataSetChanged();
                     }
                 }

@@ -43,7 +43,7 @@ public class HomeEntity {
 
         public int category2;
         public int siteDistrict;
-        public int upToPar;
+        public double upToPar;
         public int category3;
         public int distributionWay;
         public String appearanceLink;

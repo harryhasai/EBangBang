@@ -47,7 +47,7 @@ public class OrderDetailEntity {
 
         public int orderFormStatus;
         public double actualMoney;
-        public long accomplishTime;
+//        public long accomplishTime;
         public String orderNumber;
         public String ridePhone;
         public double distance;
@@ -68,7 +68,7 @@ public class OrderDetailEntity {
         public String userLatitude;
         public int orderFormId;
         public String rideLatitude;
-        public int meetSubtract;
+        public double meetSubtract;
         public List<GoodsBean> goods;
 
         public static class GoodsBean {

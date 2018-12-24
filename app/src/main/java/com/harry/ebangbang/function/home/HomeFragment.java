@@ -6,6 +6,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.TextView;
 
 import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationListener;
@@ -14,7 +15,9 @@ import com.harry.ebangbang.R;
 import com.harry.ebangbang.app_final.DisposableFinal;
 import com.harry.ebangbang.base.BaseFragment;
 import com.harry.ebangbang.function.errand_service.ErrandServiceActivity;
+import com.harry.ebangbang.function.main.MainActivity;
 import com.harry.ebangbang.function.search.SearchActivity;
+import com.harry.ebangbang.function.shop_detail.ShopDetailActivity;
 import com.harry.ebangbang.network.entity.HomeBannerEntity;
 import com.harry.ebangbang.network.entity.HomeEntity;
 import com.harry.ebangbang.utils.LocationUtil;
@@ -71,6 +74,8 @@ public class HomeFragment extends BaseFragment<HomePresenter> {
                 if (aMapLocation.getErrorCode() == 0) {
                     //定位成功, 发送经纬度到服务器
                     mPresenter.currentPosition(aMapLocation.getLongitude(), aMapLocation.getLatitude());
+                    TextView tvCity = (TextView) adapter.getViewByPosition(recyclerView, 0, R.id.tv_city);
+                    tvCity.setText(aMapLocation.getCity());
                 } else {
                     LocationUtil.getInstance().stopLocation();
                     new Handler().postDelayed(new Runnable() {
@@ -82,6 +87,7 @@ public class HomeFragment extends BaseFragment<HomePresenter> {
                 }
             }
         });
+
     }
 
     private void initRecyclerView() {
@@ -114,7 +120,15 @@ public class HomeFragment extends BaseFragment<HomePresenter> {
                     case R.id.tv_center_service:
                         startActivity(new Intent(mActivity, ErrandServiceActivity.class));
                         break;
-
+                    case R.id.tv_center_food:
+                        MainActivity mainActivity = (MainActivity) mActivity;
+                        mainActivity.swichTab(1);
+                        break;
+                    case R.id.tv_center_order:
+                        Intent intent = new Intent(mActivity, ShopDetailActivity.class);
+                        intent.putExtra("shopId", "1");
+                        startActivity(intent);
+                        break;
                 }
             }
         });

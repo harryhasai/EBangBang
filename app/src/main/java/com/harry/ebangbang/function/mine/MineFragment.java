@@ -11,6 +11,9 @@ import android.widget.TextView;
 
 import com.blankj.utilcode.util.ConvertUtils;
 import com.blankj.utilcode.util.ToastUtils;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestOptions;
 import com.harry.ebangbang.R;
 import com.harry.ebangbang.app_final.ConstantFinal;
 import com.harry.ebangbang.app_final.DisposableFinal;
@@ -197,13 +200,25 @@ public class MineFragment extends BaseFragment<MinePresenter> {
 
     public void getUserInfo(MineEntity.UserDetailsBean userBean) {
         mUserBean = userBean;
-        Picasso.with(mActivity)
-                .load(SPUtils.getString(UserInfo.HEADER_BASE.name(), "") + userBean.headAddress)
+//        Picasso.with(mActivity)
+//                .load(SPUtils.getString(UserInfo.HEADER_BASE.name(), "") + userBean.headAddress)
+//                .error(R.drawable.ic_error)
+//                .placeholder(R.drawable.ic_place_holder)
+//                .transform(new PicassoCircleTransform())
+//                .resize(ConvertUtils.dp2px(57), ConvertUtils.dp2px(57))
+//                .centerCrop()
+//                .into(ivUserHeader);
+
+        RequestOptions requestOptions = new RequestOptions()
                 .error(R.drawable.ic_error)
                 .placeholder(R.drawable.ic_place_holder)
-                .transform(new PicassoCircleTransform())
-                .resize(ConvertUtils.dp2px(57), ConvertUtils.dp2px(57))
                 .centerCrop()
+                .circleCrop() //圆形图片
+//                .transform(new RoundedCorners(20))//圆角矩形
+                .override(ConvertUtils.dp2px(57), ConvertUtils.dp2px(57));
+        Glide.with(this)
+                .load(SPUtils.getString(UserInfo.HEADER_BASE.name(), "") + userBean.headAddress)
+                .apply(requestOptions)
                 .into(ivUserHeader);
 
         tvUserName.setText(userBean.nickname);

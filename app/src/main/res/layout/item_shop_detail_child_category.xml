@@ -38,6 +38,17 @@
         android:textColor="@color/red"
         android:textSize="12sp" />
 
+    <TextView
+        android:id="@+id/tv_sales_volume"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/iv_header"
+        android:layout_marginStart="20dp"
+        android:layout_toEndOf="@id/tv_price"
+        android:text="月售1"
+        android:textColor="@color/black"
+        android:textSize="12sp" />
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
