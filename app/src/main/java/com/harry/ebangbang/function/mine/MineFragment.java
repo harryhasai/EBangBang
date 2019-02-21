@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -12,7 +13,6 @@ import android.widget.TextView;
 import com.blankj.utilcode.util.ConvertUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.harry.ebangbang.R;
 import com.harry.ebangbang.app_final.ConstantFinal;
@@ -21,6 +21,7 @@ import com.harry.ebangbang.app_final.UserInfo;
 import com.harry.ebangbang.base.BaseFragment;
 import com.harry.ebangbang.function.address_management.AddressManagementActivity;
 import com.harry.ebangbang.function.login.LoginActivity;
+import com.harry.ebangbang.function.merchant_entry.MerchantEntryActivity;
 import com.harry.ebangbang.function.my_coupon.MyCouponActivity;
 import com.harry.ebangbang.function.order_manage.OrderManageActivity;
 import com.harry.ebangbang.function.user_info.UserInfoActivity;
@@ -123,7 +124,8 @@ public class MineFragment extends BaseFragment<MinePresenter> {
     }
 
     @OnClick({R.id.iv_user_header, R.id.tv_sign_out, R.id.fl_order_manager, R.id.fl_user_info,
-            R.id.fl_customer_service, R.id.fl_address, R.id.tv_cash_coupon})
+            R.id.fl_customer_service, R.id.fl_address, R.id.tv_cash_coupon,
+            R.id.fl_merchant_entry, R.id.fl_rider})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_user_header://修改头像
@@ -136,6 +138,9 @@ public class MineFragment extends BaseFragment<MinePresenter> {
                 startActivity(new Intent(mActivity, OrderManageActivity.class));
                 break;
             case R.id.fl_customer_service: //客服电话
+                mPresenter.getCustomerService();
+                break;
+            case R.id.fl_rider: //骑手招募
                 mPresenter.getCustomerService();
                 break;
             case R.id.fl_user_info: //个人信息
@@ -153,6 +158,9 @@ public class MineFragment extends BaseFragment<MinePresenter> {
                 break;
             case R.id.tv_cash_coupon://代金券
                 startActivity(new Intent(mActivity, MyCouponActivity.class));
+                break;
+            case R.id.fl_merchant_entry://商家入驻
+                startActivity(new Intent(mActivity, MerchantEntryActivity.class));
                 break;
         }
     }
@@ -209,6 +217,7 @@ public class MineFragment extends BaseFragment<MinePresenter> {
 //                .centerCrop()
 //                .into(ivUserHeader);
 
+
         RequestOptions requestOptions = new RequestOptions()
                 .error(R.drawable.ic_error)
                 .placeholder(R.drawable.ic_place_holder)
@@ -216,11 +225,17 @@ public class MineFragment extends BaseFragment<MinePresenter> {
                 .circleCrop() //圆形图片
 //                .transform(new RoundedCorners(20))//圆角矩形
                 .override(ConvertUtils.dp2px(57), ConvertUtils.dp2px(57));
-        Glide.with(this)
-                .load(SPUtils.getString(UserInfo.HEADER_BASE.name(), "") + userBean.headAddress)
-                .apply(requestOptions)
-                .into(ivUserHeader);
-
+        if (TextUtils.isEmpty(userBean.headAddress)) {
+            Glide.with(this)
+                    .load(R.drawable.ic_user_header1)
+                    .apply(requestOptions)
+                    .into(ivUserHeader);
+        } else {
+            Glide.with(this)
+                    .load(SPUtils.getString(UserInfo.HEADER_BASE.name(), "") + userBean.headAddress)
+                    .apply(requestOptions)
+                    .into(ivUserHeader);
+        }
         tvUserName.setText(userBean.nickname);
 
         SPUtils.putString(UserInfo.HEADER_URL.name(), userBean.headAddress);

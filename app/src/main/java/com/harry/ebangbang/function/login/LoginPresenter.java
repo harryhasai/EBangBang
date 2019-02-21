@@ -102,5 +102,6 @@ public class LoginPresenter extends BasePresenter<LoginActivity> {
         SPUtils.putString(UserInfo.REMARK.name(), loginEntity.data.remark);
         SPUtils.putString(UserInfo.HEADER_BASE.name(), loginEntity.headPortraitLink);
         SPUtils.putString(UserInfo.HEADER_URL.name(), loginEntity.data.headAddress);
+        SPUtils.putString(UserInfo.INVITE_CODE.name(), loginEntity.inviteCode);
     }
 }

@@ -17,4 +17,5 @@ public enum UserInfo {
     HEADER_BASE,
     SEARCH_HISTORY,
     NICK_NAME,
+    INVITE_CODE,
 }

@@ -9,9 +9,9 @@ public class URLFinal {
      * BaseUrl
      */
 //    public static final String BASE_URL = "http://116.62.218.136:9055/guozongApp/";
-    public static final String BASE_URL = "https://www.ebbtcps.com/";
-//    public static final String BASE_URL = "http://15386nv005.iok.la/guozongApp/";
-//    public static final String BASE_URL = "http://192.168.0.116:8080/guozongApp/";
+//    public static final String BASE_URL = "https://www.ebbtcps.com/";
+//    public static final String BASE_URL = "http://1f9w438490.imwork.net/guozongApp/";
+    public static final String BASE_URL = "http://116.62.218.136:9385/guozongApp/";
 
     /**
      * 登录
@@ -191,5 +191,36 @@ public class URLFinal {
      * 查看跑腿订单
      */
     public static final String ERRAND_MONEY = "mobile/errand/selectUserList";
+    /**
+     * 我的优惠券
+     */
     public static final String MY_COUPON = "mobile/PersonalCenter/selectMyCoupon";
+    /**
+     * 查询商品的一级分类
+     */
+    public static final String SELECT_CONTENT_CATEGORY_FIRST = "mobile/shop/firstOrder";
+    /**
+     * 查询商品下级分类
+     */
+    public static final String SELECT_CONTENT_CATEGORY_SECOND = "mobile/shop/ParentOrder";
+    /**
+     * 一级地区 省
+     */
+    public static final String SELECT_CONTENT_ADDRESS_FIRST = "mobile/shop/stairProvince";
+    /**
+     * 下级地区 市区
+     */
+    public static final String SELECT_CONTENT_ADDRESS_SECOND = "mobile/shop/subordinateRegion";
+    /**
+     * 商家入驻 - 获取验证码
+     */
+    public static final String MERCHANT_ENTRY_GET_VERIFICATION_CODE = "mobile/shop/toregister";
+    /**
+     * 商家入驻 - 验证验证码
+     */
+    public static final String MERCHANT_ENTRY_CHECK_VERIFICATION_CODE = "mobile/shop/SelectVerify";
+    /**
+     * 申请成为商家
+     */
+    public static final String MERCHANT_ENTRY = "mobile/shop/applyForShop";
 }

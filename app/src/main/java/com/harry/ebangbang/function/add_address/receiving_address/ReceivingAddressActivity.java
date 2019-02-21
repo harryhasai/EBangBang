@@ -2,6 +2,7 @@ package com.harry.ebangbang.function.add_address.receiving_address;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -76,7 +77,13 @@ public class ReceivingAddressActivity extends BaseActivity {
         initRecyclerView();
         tvTitle.setText("选择地址");
 
-        initMap();
+        LocationUtil.getInstance().initLocation(getApplicationContext());
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                initMap();
+            }
+        }, 500);
     }
 
     private void initRecyclerView() {
@@ -125,7 +132,6 @@ public class ReceivingAddressActivity extends BaseActivity {
     private void initMap() {
         aMap = mapView.getMap();
 
-        LocationUtil.getInstance().initLocation(getApplicationContext());
         LocationUtil.getInstance().startLocation(new AMapLocationListener() {
 
             @Override

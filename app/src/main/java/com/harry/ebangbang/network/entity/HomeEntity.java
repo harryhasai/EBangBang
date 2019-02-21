@@ -42,17 +42,17 @@ public class HomeEntity {
          */
 
         public int category2;
-        public int siteDistrict;
+        public long siteDistrict;
         public double upToPar;
-        public int category3;
+        public String category3;
         public int distributionWay;
         public String appearanceLink;
-        public int siteCity;
+        public long siteCity;
         public String siteDetail;
         public int category1;
         public String latitude;
         public String contactsPhone;
-        public int siteProvince;
+        public long siteProvince;
         public String name;
         public String logo;
         public int id;

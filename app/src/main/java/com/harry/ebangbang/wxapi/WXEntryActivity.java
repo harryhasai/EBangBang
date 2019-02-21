@@ -75,6 +75,7 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
 
                 } else if (type == RETURN_MSG_TYPE_SHARE) {
                     ToastUtils.showShort("微信分享成功");
+
                 }
                 break;
         }

@@ -160,6 +160,8 @@ public class ShopDetailActivity extends BaseActivity<ShopDetailPresenter> {
                 }
                 childAdapter.notifyDataSetChanged();
                 tvShoppingCartNumber.setVisibility(View.GONE);
+
+                tvTotalPrice.setText("0");
             }
         });
 
@@ -182,7 +184,7 @@ public class ShopDetailActivity extends BaseActivity<ShopDetailPresenter> {
                         break;
                     case R.id.iv_dialog_reduce:
                         popupBean.count--;
-                        if (popupBean.count == 0) {
+                        if (popupBean.count <= 0) {
                             popupList.remove(position);
                             for (int i = 0; i < childList.size(); i++) {
                                 ShopDetailChildEntity.DataBean.GoodsBean goodsBean = childList.get(i);
@@ -203,6 +205,8 @@ public class ShopDetailActivity extends BaseActivity<ShopDetailPresenter> {
                         childAdapter.notifyDataSetChanged();
                         break;
                 }
+                tvShoppingCartNumber.setText(String.valueOf(popupList.size()));
+                calculationTotalPrice();
             }
         });
     }
@@ -261,6 +265,7 @@ public class ShopDetailActivity extends BaseActivity<ShopDetailPresenter> {
             public void plus(int adapterPosition, int id) {
                 ShopDetailChildEntity.DataBean.GoodsBean bean = childList.get(adapterPosition);
                 bean.goodsCount++;
+
                 childAdapter.notifyDataSetChanged();
 
                 if (popupList.size() == 0) {
@@ -284,6 +289,8 @@ public class ShopDetailActivity extends BaseActivity<ShopDetailPresenter> {
 
                 tvShoppingCartNumber.setVisibility(View.VISIBLE);
                 tvShoppingCartNumber.setText(String.valueOf(popupList.size()));
+
+                calculationTotalPrice();
             }
 
             @Override
@@ -310,8 +317,12 @@ public class ShopDetailActivity extends BaseActivity<ShopDetailPresenter> {
 
                 if (popupList.size() == 0) {
                     tvShoppingCartNumber.setVisibility(View.GONE);
+                    tvTotalPrice.setText("0");
+                } else {
+                    calculationTotalPrice();
+                    tvShoppingCartNumber.setText(String.valueOf(popupList.size()));
                 }
-                tvShoppingCartNumber.setText(String.valueOf(popupList.size()));
+
             }
 
             @Override
@@ -379,7 +390,7 @@ public class ShopDetailActivity extends BaseActivity<ShopDetailPresenter> {
             distance = b.setScale(1, BigDecimal.ROUND_HALF_UP).doubleValue() + "km";
         }
         tvShopAddress.setText(distance + " | " + data.shopSite);
-        if (data.meetMInus.size() != 0) {
+        if (data.meetMInus.size() > 0) {
             StringBuilder builder = new StringBuilder();
             for (int i = 0; i < data.meetMInus.size(); i++) {
                 ShopDetailChildEntity.DataBean.MeetMInusBean bean = data.meetMInus.get(i);
@@ -453,6 +464,15 @@ public class ShopDetailActivity extends BaseActivity<ShopDetailPresenter> {
         finish();
     }
 
+    private void calculationTotalPrice() {
+        double totalPrice = 0;
+        for (int i = 0; i < popupList.size(); i++) {
+            ComplexPopupEntity entity = popupList.get(i);
+            totalPrice = totalPrice + entity.count * entity.price;
+        }
+        tvTotalPrice.setText(String.valueOf(totalPrice));
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -474,29 +494,36 @@ public class ShopDetailActivity extends BaseActivity<ShopDetailPresenter> {
                 ComplexPopupEntity e = new ComplexPopupEntity(Integer.valueOf(goodsId), goodsCount, goodsName, goodsPrice);
                 if (popupList.size() == 0 && goodsCount > 0) {
                     popupList.add(e);
-                } else if (!popupList.contains(e)) {
-                    popupList.add(e);
+                } else {
+                    int sameIndex = -1;
+                    for (int i = 0; i < popupList.size(); i++) {
+                        ComplexPopupEntity entity = popupList.get(i);
+                        if (String.valueOf(entity.id).equals(goodsId)) {
+                            sameIndex = i;
+                        }
+                    }
+                    if (sameIndex < 0) {
+                        popupList.add(e);
+                    } else {
+                        popupList.get(sameIndex).count = goodsCount;
+                    }
+
                 }
 
                 for (int i = 0; i < popupList.size(); i++) {
-                    ComplexPopupEntity popupEntity = popupList.get(i);
-                    if (popupEntity.id == Integer.valueOf(goodsId)) {
-                        if (goodsCount == 0) {
-                            popupList.remove(popupEntity);
-                        } else {
-                            if (popupList.contains(popupEntity)) {
-                                popupEntity.count = goodsCount;
-                            }
-                        }
-                        if (popupList.size() == 0) {
-                            tvShoppingCartNumber.setVisibility(View.GONE);
-                        } else {
-                            tvShoppingCartNumber.setVisibility(View.VISIBLE);
-                            tvShoppingCartNumber.setText(String.valueOf(popupList.size()));
-                        }
-                        popupAdapter.notifyDataSetChanged();
+                    if (popupList.get(i).count == 0) {
+                        popupList.remove(i);
                     }
                 }
+
+                if (popupList.size() == 0) {
+                    tvShoppingCartNumber.setVisibility(View.GONE);
+                } else {
+                    tvShoppingCartNumber.setVisibility(View.VISIBLE);
+                    tvShoppingCartNumber.setText(String.valueOf(popupList.size()));
+                }
+                popupAdapter.notifyDataSetChanged();
+                calculationTotalPrice();
             }
         }
     }

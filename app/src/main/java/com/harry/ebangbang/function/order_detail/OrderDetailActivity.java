@@ -157,7 +157,7 @@ public class OrderDetailActivity extends BaseActivity<OrderDetailPresenter> {
                 break;
             case 6://退返货
                 llOrderInformation.setVisibility(View.VISIBLE);
-                btnSubmit.setText("去退货");
+                btnSubmit.setText("返回");
                 initOrderInfo(bean);
                 break;
             case 7://完成并已评价
@@ -258,7 +258,7 @@ public class OrderDetailActivity extends BaseActivity<OrderDetailPresenter> {
         String time = DateFormatUtils.getFormatedDateTime(DateFormatUtils.PATTERN_1, bean.orderFormtime);
         tvOrderTime.setText(time);
         tvOrderRemark.setText(bean.remark);
-        tvRiderName.setText(bean.rideName);
+        tvRiderName.setText("骑手" + bean.rideName);
     }
 
     @OnClick({R.id.ll_back, R.id.btn_evaluate, R.id.btn_submit})
@@ -304,7 +304,7 @@ public class OrderDetailActivity extends BaseActivity<OrderDetailPresenter> {
                             break;
                         case 6://退返货
                             //去退货
-                            ToastUtils.showShort("暂无退货功能, 敬请期待");
+                            finish();
                             break;
                         case 7://完成并已评价
                             finish();

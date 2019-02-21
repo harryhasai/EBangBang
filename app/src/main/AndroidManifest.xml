@@ -93,6 +93,8 @@
             android:configChanges="keyboardHidden|orientation|screenSize" />
         <activity android:name=".function.errand_list.going_on.RiderLocationActivity" />
         <activity android:name=".function.my_coupon.MyCouponActivity" />
+        <activity android:name=".function.merchant_entry.MerchantEntryActivity" />
+        <activity android:name=".function.merchant_entry.select_content.SelectContentActivity" />
 
     </application>
 

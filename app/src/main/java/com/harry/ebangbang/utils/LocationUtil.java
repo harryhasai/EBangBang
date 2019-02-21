@@ -69,11 +69,11 @@ public class LocationUtil {
      * 开始定位
      */
     public void startLocation(AMapLocationListener locationListener) {
-        locationClient.setLocationListener(locationListener);
         if (locationClient == null) {
-            ToastUtils.showShort("还未初始化, 请先初始化");
+//            ToastUtils.showShort("定位还未初始化, 请先初始化");
             return;
         }
+        locationClient.setLocationListener(locationListener);
         locationClient.startLocation();
     }
 
@@ -82,7 +82,7 @@ public class LocationUtil {
      */
     public void startLocation() {
         if (locationClient == null) {
-            ToastUtils.showShort("还未初始化, 请先初始化");
+//            ToastUtils.showShort("定位还未初始化, 请先初始化");
             return;
         }
         locationClient.startLocation();

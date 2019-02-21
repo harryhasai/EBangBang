@@ -45,7 +45,7 @@
             android:layout_weight="1"
             android:drawablePadding="5dp"
             android:gravity="center_horizontal"
-            android:text="一键下单"
+            android:text="E棒棒商超"
             android:textColor="@color/black"
             android:textSize="12sp"
             rtv:icon_direction="top"

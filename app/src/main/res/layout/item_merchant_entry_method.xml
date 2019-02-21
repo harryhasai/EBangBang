@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:ignore="HardcodedText">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/layer_list_bottom_line1"
+        android:gravity="center"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:text="选择配送方式"
+        android:textColor="@color/black"
+        android:textSize="15sp" />
+
+    <FrameLayout
+        android:id="@+id/fl_platform"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/layer_list_bottom_line1"
+        android:paddingStart="30dp"
+        android:paddingTop="15dp"
+        android:paddingEnd="30dp"
+        android:paddingBottom="15dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="平台配送"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <CheckBox
+            android:id="@+id/cb_platform"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_gravity="end"
+            android:background="@drawable/select_method_checked"
+            android:button="@null"
+            android:enabled="false" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/fl_business"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/layer_list_bottom_line1"
+        android:paddingStart="30dp"
+        android:paddingTop="15dp"
+        android:paddingEnd="30dp"
+        android:paddingBottom="15dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="商家配送"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <CheckBox
+            android:id="@+id/cb_business"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_gravity="end"
+            android:background="@drawable/select_method_checked"
+            android:button="@null"
+            android:enabled="false" />
+    </FrameLayout>
+
+    <Button
+        android:id="@+id/btn_confirm"
+        android:layout_width="match_parent"
+        android:layout_height="39dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/shape_submit_button_bg"
+        android:text="确定"
+        android:textColor="@color/white"
+        android:textSize="14sp" />
+</LinearLayout>

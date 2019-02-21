@@ -37,6 +37,8 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> {
     EditText etPassword;
     @BindView(R.id.et_confirm_password)
     EditText etConfirmPassword;
+    @BindView(R.id.et_invite_code)
+    EditText etInviteCode;
     @BindView(R.id.btn_register)
     Button btnRegister;
 

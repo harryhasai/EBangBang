@@ -18,6 +18,7 @@ public class LoginEntity {
     public DataBean data;
     public String token;
     public String headPortraitLink;
+    public String inviteCode;
 
     public static class DataBean {
         /**

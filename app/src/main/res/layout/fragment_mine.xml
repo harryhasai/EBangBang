@@ -229,34 +229,35 @@
                 android:src="@drawable/ic_arrow_right1" />
         </FrameLayout>
 
+        <!--<FrameLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginStart="20dp"-->
+            <!--android:layout_marginTop="15dp"-->
+            <!--android:layout_marginEnd="20dp"-->
+            <!--android:background="@drawable/layer_list_bottom_line1"-->
+            <!--android:paddingBottom="17dp">-->
+
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:includeFontPadding="false"-->
+                <!--android:text="我要合作"-->
+                <!--android:textColor="@color/black"-->
+                <!--android:textSize="15sp" />-->
+
+            <!--<ImageView-->
+                <!--android:layout_width="7dp"-->
+                <!--android:layout_height="13dp"-->
+                <!--android:layout_gravity="end"-->
+                <!--android:layout_marginTop="2dp"-->
+                <!--android:layout_marginEnd="2dp"-->
+                <!--android:contentDescription="image"-->
+                <!--android:src="@drawable/ic_arrow_right1" />-->
+        <!--</FrameLayout>-->
+
         <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="20dp"
-            android:background="@drawable/layer_list_bottom_line1"
-            android:paddingBottom="17dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:includeFontPadding="false"
-                android:text="我要合作"
-                android:textColor="@color/black"
-                android:textSize="15sp" />
-
-            <ImageView
-                android:layout_width="7dp"
-                android:layout_height="13dp"
-                android:layout_gravity="end"
-                android:layout_marginTop="2dp"
-                android:layout_marginEnd="2dp"
-                android:contentDescription="image"
-                android:src="@drawable/ic_arrow_right1" />
-        </FrameLayout>
-
-        <FrameLayout
+            android:id="@+id/fl_merchant_entry"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -284,6 +285,7 @@
         </FrameLayout>
 
         <FrameLayout
+            android:id="@+id/fl_rider"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
